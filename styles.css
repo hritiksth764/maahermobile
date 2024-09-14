@@ -139,6 +139,24 @@ html {
   text-align: center; /* Center message */
 }
 
+.cart-slider .checkout-btn {
+  width: calc(100%-32px);
+  margin: 0 16px;
+  padding: 15px;
+  background-color: #333; /* Change this to your desired color */
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 20px 0; /* 20px margin from the top and bottom */
+  text-align: center;
+  display: none; /* Initially hidden */
+}
+
+.checkout-btn:hover {
+  background-color: #555; /* Optional hover effect */
+}
+
 .hero-section {
   height: 100vh;
   display: flex;
