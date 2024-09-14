@@ -61,14 +61,82 @@ html {
 }
 
 .cart {
-  margin-left: auto; /* Move the cart to the far right */
+  margin-left: auto;
+  fill: black; /* Move the cart to the far right */
 }
 
 .logo svg,
 .cart svg {
-  width: 30px;
-  height: 30px;
-  fill: white; /* Adjust fill color if needed */
+  width: 18px;
+  height: 15px;
+
+  /* Adjust fill color if needed */
+}
+
+/* cart slider */
+/* Cart Slider Base Styles */
+.cart-slider {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 300px; /* Full screen width */
+  height: 100%;
+  background-color: white;
+  box-shadow: -4px 0 8px rgba(0, 0, 0, 0.2);
+  transition: right 0.4s ease;
+  z-index: 1000;
+  padding: 20px; /* Mobile-friendly padding */
+}
+
+/* When the cart is open */
+.cart-slider.active {
+  right: 0;
+}
+
+/* Cart Header */
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.cart-header h2 {
+  font-size: 18px; /* Mobile-friendly font size */
+  margin-top: 100px;
+  color: #333;
+}
+
+.close-cart-btn {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 20px !important;
+  left: 20px !important; /* Adjusted left position */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 !important;
+  /* Add some padding for better clickability */
+}
+
+.close-cart-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Cart Content */
+.cart-content {
+  margin-top: 20px;
+  font-size: 16px; /* Mobile-friendly font size */
+  color: #555;
+}
+
+#cartMessage {
+  font-size: 16px;
+  color: #888; /* Gray color for empty message */
+  text-align: center; /* Center message */
 }
 
 .hero-section {
@@ -246,8 +314,14 @@ html {
 }
 
 .product-card p {
-  font-size: 1rem;
-  color: #6a8e3d;
+  color: #746b65;
+
+  text-align: center;
+  font-family: Rubik;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 133.333% */
 }
 /* Instagram Section */
 .instagram-section {
