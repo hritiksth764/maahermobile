@@ -571,7 +571,7 @@ button svg {
   font-size: 16px;
   margin: 0 16px; /* 20px margin from the top and bottom */
   text-align: center;
-  display: none; /* Initially hidden */
+  /* Initially hidden */
 }
 
 .checkout-btn:hover {
