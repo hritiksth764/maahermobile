@@ -9,7 +9,7 @@ body {
 .form-container {
   overflow-x: hidden;
   width: auto;
-  margin: 0 16px;
+  margin: 10px 16px;
   background-color: white;
   border-radius: 10px;
 }
