@@ -71,7 +71,7 @@ window.onload = function () {
   displayCart();
 };
 
-// Buy Now button functionality
+// Buy Now button functionality with Razorpay integration
 document.getElementById("buyNowBtn").addEventListener("click", function () {
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   const cartItems = JSON.parse(localStorage.getItem("cartItems"));
@@ -83,6 +83,53 @@ document.getElementById("buyNowBtn").addEventListener("click", function () {
     return;
   }
 
-  // Proceed to payment page (Razorpay integration would go here)
-  alert("Proceeding to payment...");
+  // Razorpay options
+  const options = {
+    key: "rzp_test_nqtmUnMF9r43qM", // Replace with your Razorpay API key
+    amount:
+      cartItems.reduce((total, item) => total + item.price * item.quantity, 0) *
+      100, // Amount in paisa
+    currency: "INR",
+    name: "Your Store",
+    description: "Test Transaction",
+    handler: function (response) {
+      // On successful payment, send order details to serverless function
+      fetch("/api/sendOrderEmail", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          payment_id: response.razorpay_payment_id,
+          userInfo,
+          cartItems,
+        }),
+      })
+        .then((res) => res.json())
+        .then(() => {
+          alert("Payment successful! Redirecting...");
+          // Clear the cart and user info from local storage
+          localStorage.removeItem("cartItems");
+          localStorage.removeItem("userInfo");
+          window.location.href = "index.html"; // Redirect to home page
+        })
+        .catch((error) => {
+          console.error("Error sending email:", error);
+          alert(
+            "Payment was successful, but we could not process the order. Please contact support."
+          );
+        });
+    },
+    prefill: {
+      name: `${userInfo.firstName} ${userInfo.lastName}`,
+      email: userInfo.email,
+      contact: userInfo.phone,
+    },
+    theme: {
+      color: "#F37254",
+    },
+  };
+
+  const rzp = new Razorpay(options);
+  rzp.open();
 });

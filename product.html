@@ -552,6 +552,7 @@
         const cartItemsList = document.getElementById("cartItemsList");
         const cartTotal = document.getElementById("cartTotal");
         const checkoutButton = document.getElementById("checkout-button");
+        const cartMessage = document.getElementById("cartMessage");
 
         // Function to load cart items from local storage
         function loadCartItems() {
@@ -561,10 +562,11 @@
           cartItemsList.innerHTML = "";
 
           if (cartItems.length === 0) {
-            cartTotal.textContent = "Your cart is empty!";
-            checkoutButton.style.display = "none"; // Hide the checkout button if cart is empty
+            cartTotal.textContent = "";
+            cartMessage.textContent = "Your cart is empty!";
           } else {
             let total = 0;
+            cartMessage.textContent = ""; // Clear the empty cart message
 
             cartItems.forEach((item) => {
               const li = document.createElement("li");
@@ -575,13 +577,22 @@
             });
 
             cartTotal.textContent = `Total: RS. ${total}`;
-            checkoutButton.style.display = "block"; // Show the checkout button
           }
         }
 
-        // Redirect to userform.html on Checkout button click
+        // Handle Checkout button click
         checkoutButton.addEventListener("click", function () {
-          window.location.href = "userform.html";
+          const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+          if (cartItems.length === 0) {
+            // If cart is empty, show an alert message
+            alert(
+              "Please add items to your cart before proceeding to checkout."
+            );
+          } else {
+            // Redirect to userform.html if the cart has items
+            window.location.href = "userform.html";
+          }
         });
 
         // Load cart items when the page loads
