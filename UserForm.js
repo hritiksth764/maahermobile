@@ -106,7 +106,7 @@ document.getElementById("buyNowBtn").addEventListener("click", function () {
         },
         body: JSON.stringify({
           payment_id: response.razorpay_payment_id,
-          userInfo,
+          userInfo, //this needs to have firstName
           cartItems,
         }),
       })

@@ -1,7 +1,7 @@
 const nodemailer = require("nodemailer");
 
 export default async (req, res) => {
-  const { payment_id, contactDetails, cartItems } = req.body;
+  const { payment_id, userInfo, cartItems } = req.body; // Change contactDetails to userInfo
 
   // Create a transporter using Nodemailer
   const transporter = nodemailer.createTransport({
@@ -19,12 +19,12 @@ export default async (req, res) => {
     subject: "New Order Received",
     text: `
       Payment ID: ${payment_id}
-      Customer: ${contactDetails.firstName} ${contactDetails.lastName}
-      Email: ${contactDetails.email}
-      Phone: ${contactDetails.phone}
-      Address: ${contactDetails.address1}, ${contactDetails.address2}, ${
-      contactDetails.city
-    }, ${contactDetails.state}, ${contactDetails.pin}
+      Customer: ${userInfo.firstName} ${userInfo.lastName}
+      Email: ${userInfo.email}
+      Phone: ${userInfo.phone}
+      Address: ${userInfo.address1}, ${userInfo.address2 || ""}, ${
+      userInfo.city
+    }, ${userInfo.state}, ${userInfo.pin}
       
       Order Details:
       ${cartItems
