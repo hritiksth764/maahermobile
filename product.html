@@ -515,15 +515,16 @@
         });
       });
       function updateCheckoutButton() {
-        const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
         const checkoutButton = document.getElementById("checkout-button");
 
-        if (cartItems.length > 0) {
-          checkoutButton.style.display = "block"; // Show the button if cart is not empty
-        } else {
-          checkoutButton.style.display = "none"; // Hide the button if cart is empty
-        }
+        // Always display the checkout button
+        checkoutButton.style.display = "block";
       }
+
+      // Call the function when the page loads
+      document.addEventListener("DOMContentLoaded", function () {
+        updateCheckoutButton(); // Ensure the checkout button is always visible on load
+      });
 
       // Call the function when the page loads
       document.addEventListener("DOMContentLoaded", function () {
