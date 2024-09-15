@@ -468,7 +468,7 @@ button:hover {
   font-size: 16px;
   margin: 20px 0; /* 20px margin from the top and bottom */
   text-align: center;
-  display: none; /* Initially hidden */
+  /* Initially hidden */
 }
 
 .checkout-btn:hover {
