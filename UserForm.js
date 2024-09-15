@@ -61,6 +61,8 @@ document
       pin: document.getElementById("pin").value,
     };
 
+    console.log("Saving user info:", userInfo);
+
     localStorage.setItem("userInfo", JSON.stringify(userInfo));
 
     alert("User information saved successfully!");
@@ -75,6 +77,9 @@ window.onload = function () {
 document.getElementById("buyNowBtn").addEventListener("click", function () {
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   const cartItems = JSON.parse(localStorage.getItem("cartItems"));
+
+  console.log("User Info:", userInfo); // Debugging
+  console.log("Cart Items:", cartItems); // Debugging
 
   if (!userInfo || cartItems.length === 0) {
     alert(
