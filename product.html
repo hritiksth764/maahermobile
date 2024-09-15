@@ -137,7 +137,7 @@
       <p>Tax included</p>
 
       <button id="addToBag">Add to Bag</button>
-      <button id="buyNow">Buy Now</button>
+      <!-- <button id="buyNow">Buy Now</button> -->
     </section>
 
     <div class="accordion-container">
@@ -547,6 +547,46 @@
 
         updateCheckoutButton(); // Update the button visibility after removing items
       }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const cartItemsList = document.getElementById("cartItemsList");
+        const cartTotal = document.getElementById("cartTotal");
+        const checkoutButton = document.getElementById("checkout-button");
+
+        // Function to load cart items from local storage
+        function loadCartItems() {
+          const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+          // Clear previous cart content
+          cartItemsList.innerHTML = "";
+
+          if (cartItems.length === 0) {
+            cartTotal.textContent = "Your cart is empty!";
+            checkoutButton.style.display = "none"; // Hide the checkout button if cart is empty
+          } else {
+            let total = 0;
+
+            cartItems.forEach((item) => {
+              const li = document.createElement("li");
+              li.textContent = `${item.name} - RS. ${item.price} x ${item.quantity}`;
+              cartItemsList.appendChild(li);
+
+              total += item.price * item.quantity;
+            });
+
+            cartTotal.textContent = `Total: RS. ${total}`;
+            checkoutButton.style.display = "block"; // Show the checkout button
+          }
+        }
+
+        // Redirect to userform.html on Checkout button click
+        checkoutButton.addEventListener("click", function () {
+          window.location.href = "userform.html";
+        });
+
+        // Load cart items when the page loads
+        loadCartItems();
+      });
     </script>
   </body>
 </html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Form</title>
+    <link rel="stylesheet" href="UserForm.css" />
+  </head>
+  <body>
+    <div class="form-container">
+      <h1>Contact</h1>
+      <!-- Contact Information Form -->
+      <form id="userForm">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone number</label>
+          <input type="tel" id="phone" name="phone" required />
+        </div>
+
+        <h2>Delivery</h2>
+        <div class="form-group">
+          <label for="firstName">First name</label>
+          <input type="text" id="firstName" name="firstName" required />
+        </div>
+        <div class="form-group">
+          <label for="lastName">Last name</label>
+          <input type="text" id="lastName" name="lastName" required />
+        </div>
+        <div class="form-group">
+          <label for="country">Country</label>
+          <input
+            type="text"
+            id="country"
+            name="country"
+            value="India"
+            readonly
+          />
+        </div>
+        <div class="form-group">
+          <label for="address1">Address Line 1</label>
+          <input type="text" id="address1" name="address1" required />
+        </div>
+        <div class="form-group">
+          <label for="address2">Address Line 2 (Optional)</label>
+          <input type="text" id="address2" name="address2" />
+        </div>
+        <div class="form-group">
+          <label for="city">City</label>
+          <input type="text" id="city" name="city" required />
+        </div>
+        <div class="form-group">
+          <label for="state">State</label>
+          <input type="text" id="state" name="state" required />
+        </div>
+        <div class="form-group">
+          <label for="pin">PIN Code</label>
+          <input type="text" id="pin" name="pin" required />
+        </div>
+
+        <button type="submit" id="submitFormBtn">Submit</button>
+      </form>
+
+      <!-- Cart Details Section -->
+      <h2>Your Cart</h2>
+      <div id="cartDetails"></div>
+
+      <!-- Buy Now Button -->
+      <button id="buyNowBtn">Buy Now</button>
+    </div>
+
+    <script src="UserForm.js"></script>
+  </body>
+</html>
