@@ -308,9 +308,15 @@ html {
 }
 
 .product-card h4 {
-  font-size: 1.2rem;
   margin-bottom: 5px;
-  color: #4b2e28;
+  color: #351d0d;
+
+  text-align: center;
+  font-family: Lora;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px; /* 128.571% */
 }
 
 .product-card p {
@@ -335,6 +341,10 @@ html {
   font-weight: bold;
   color: #4b2e28;
   margin-bottom: 20px;
+}
+
+a {
+  text-decoration: none;
 }
 
 .instagram-grid {
