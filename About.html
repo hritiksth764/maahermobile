@@ -158,27 +158,30 @@
       <section class="about-section">
         <h2 class="subheading">Terms & Conditions</h2>
         <p class="textlast">
-          Maaher Clothing: Product Pricing Disclaimer and Payments The prices
-          displayed on Maaher Shop may differ from prices of the products in
-          other stores and may vary from country to country for the same
-          product. Prices shown on the website both for India and in other
-          countries are subject to change without prior notice. The price of our
-          merchandise/products as mentioned on Maaher Shop is the Maximum Retail
-          Price (MRP) for the said product. Such MRP shall be inclusive of all
-          local taxes as are applicable in India. Additional applicable taxes
-          may be charged depending upon the destination where the order has to
-          be shipped to. The tax rate applied and charged upon the order shall
-          include combined tax rate for both state and local tax rates in
-          accordance with the address where the order is being shipped. Maaher
-          reserves the right to collect taxes and/or such other levy / duty /
-          surcharge that it may incur in addition to the normal taxes it may
-          have to pay. We may also charge shipping fees which may include postal
-          charges / shipment charges etc. as may be applicable. Unless
-          specifically stated otherwise on Maaher, you agree not to hold us
-          responsible for any banking charges incurred due to payments on your
-          account. Payments can be made by using all major credit cards, debit
-          cards, net banking and UPI. Payments will be debited and cleared from
-          your account immediately on order. No products shall be shipped
+          Maaher Clothing: Product Pricing Disclaimer and Payments<br />
+          <br />
+          The prices displayed on Maaher Shop may differ from prices of the
+          products in other stores and may vary from country to country for the
+          same product. Prices shown on the website both for India and in other
+          countries are subject to change without prior notice.<br />
+          <br />
+          The price of our merchandise/products as mentioned on Maaher Shop is
+          the Maximum Retail Price (MRP) for the said product. Such MRP shall be
+          inclusive of all local taxes as are applicable in India. Additional
+          applicable taxes may be charged depending upon the destination where
+          the order has to be shipped to. The tax rate applied and charged upon
+          the order shall include combined tax rate for both state and local tax
+          rates in accordance with the address where the order is being shipped.
+          Maaher reserves the right to collect taxes and/or such other levy /
+          duty / surcharge that it may incur in addition to the normal taxes it
+          may have to pay. We may also charge shipping fees which may include
+          postal charges / shipment charges etc. as may be applicable.<br />
+          <br />
+          Unless specifically stated otherwise on Maaher, you agree not to hold
+          us responsible for any banking charges incurred due to payments on
+          your account. Payments can be made by using all major credit cards,
+          debit cards, net banking and UPI. Payments will be debited and cleared
+          from your account immediately on order. No products shall be shipped
           without Maaher being in receipt of the said payments.
         </p>
       </section>
@@ -288,8 +291,8 @@
         <div class="footer-links">
           <h3>Explore</h3>
           <ul>
-            <li>About</li>
-            <li>Motif name</li>
+            <li><a href="index.html" id="home-link">Home</a></li>
+            <li><a href="about.html" id="about-link">About</a></li>
             <li>Motif name</li>
           </ul>
           <p>©2024 Maaher</p>
@@ -326,5 +329,35 @@
         </div>
       </div>
     </footer>
+    <section class="footer-image-section">
+      <img src="footerimage.png" alt="Footer Image" class="footer-image" />
+    </section>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Get the About link and Home link elements
+        const aboutLink = document.getElementById("about-link");
+        const homeLink = document.getElementById("home-link");
+
+        // Function to scroll to the top of the page
+        function scrollToTop(event) {
+          event.preventDefault(); // Prevent default link behavior
+          window.scrollTo({ top: 0, behavior: "smooth" }); // Smooth scroll to top
+        }
+
+        // Attach event listeners for both 'click' and 'touchstart'
+        aboutLink.addEventListener("click", scrollToTop);
+        aboutLink.addEventListener("touchstart", scrollToTop);
+
+        // Redirect to index.html on tapping Home
+        homeLink.addEventListener("click", function (event) {
+          event.preventDefault();
+          window.location.href = "index.html";
+        });
+        homeLink.addEventListener("touchstart", function (event) {
+          event.preventDefault();
+          window.location.href = "index.html";
+        });
+      });
+    </script>
   </body>
 </html>
