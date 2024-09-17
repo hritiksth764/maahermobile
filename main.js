@@ -5,7 +5,7 @@ function redirectToMobile() {
 
   // Check if the current URL is the desktop site on custom domain and user is on a mobile device
   if (isMobile && currentUrl.includes("maaher.life")) {
-    window.location.href = "https://mobilemaaher.vercel.app";
+    window.location.href = "https://maahermobile.vercel.app";
   }
 
   // Optional: Redirect back to desktop if user resizes window to desktop size
