@@ -532,7 +532,7 @@ form {
   width: 100%;
 }
 
-input[type="email"] {
+.input[type="email"] {
   padding: 10px 40px 10px 15px; /* Space for the button inside */
   font-size: 1rem;
   border: 1px solid #4b2e28;
@@ -540,7 +540,7 @@ input[type="email"] {
   width: 100%;
 }
 
-button {
+.button {
   width: auto;
   position: absolute;
   right: 5px;
@@ -553,7 +553,7 @@ button {
   cursor: pointer;
 }
 
-button svg {
+.button svg {
   fill: white;
   width: 13px;
   height: 8px;
@@ -572,14 +572,14 @@ button svg {
 }
 
 .checkout-btn {
-  width: 230px;
+  width: 100%;
   padding: 15px;
   background-color: #333; /* Change this to your desired color */
   color: white;
   border: none;
   cursor: pointer;
   font-size: 16px;
-  margin: 0 16px; /* 20px margin from the top and bottom */
+  margin: 20px 0; /* 20px margin from the top and bottom */
   text-align: center;
   /* Initially hidden */
 }
@@ -598,4 +598,17 @@ button svg {
 .footer-image {
   width: 100%; /* This makes sure the image spans the entire width of the viewport */
   height: auto;
+}
+.cart-counter {
+  position: absolute;
+  top: 10px; /* Adjust this to position the counter as needed */
+  right: 12px; /* Adjust this to position the counter as needed */
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  padding: 2px 4px;
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+  min-width: 4px;
 }

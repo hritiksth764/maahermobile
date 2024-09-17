@@ -120,6 +120,8 @@
             stroke-linecap="round"
           />
         </svg>
+        <span id="cart-counter" class="cart-counter">0</span>
+        <!-- Added badge -->
       </div>
     </header>
 
@@ -403,8 +405,8 @@
         const cartMessage = document.getElementById("cartMessage");
         const cartItemsList = document.getElementById("cartItemsList");
         const cartTotal = document.getElementById("cartTotal");
+        const cartCounter = document.getElementById("cart-counter"); // Cart counter element
 
-        // Fetch product details
         const productName = document.getElementById("productName").textContent;
         const productPrice = parseInt(
           document
@@ -412,7 +414,6 @@
             .textContent.replace(/[^0-9]/g, "")
         );
 
-        // Add to Bag Button functionality
         const addToBagButton = document.getElementById("addToBag");
 
         // Open cart slider when cart icon is clicked
@@ -447,6 +448,7 @@
 
           // Save updated cart to local storage
           localStorage.setItem("cartItems", JSON.stringify(cartItems));
+          updateCartCounter(); // Update cart counter
           loadCartItems(); // Refresh the cart UI
         });
 
@@ -464,9 +466,17 @@
             cartMessage.style.display = "none";
             let total = 0;
 
-            cartItems.forEach((item) => {
+            cartItems.forEach((item, index) => {
               const li = document.createElement("li");
-              li.textContent = `${item.name} - RS. ${item.price} x ${item.quantity}`;
+
+              li.innerHTML = `
+          ${item.name} - RS. ${item.price} 
+          <div class="quantity-controls">
+            <button class="decrease-quantity" data-index="${index}">-</button>
+            <span class="quantity">${item.quantity}</span>
+            <button class="increase-quantity" data-index="${index}">+</button>
+          </div>
+        `;
               cartItemsList.appendChild(li);
 
               total += item.price * item.quantity;
@@ -474,11 +484,65 @@
 
             cartTotal.textContent = `Total: RS. ${total}`;
             cartTotal.style.display = "block";
+
+            // Add event listeners for the increase and decrease buttons
+            document
+              .querySelectorAll(".increase-quantity")
+              .forEach((button) => {
+                button.addEventListener("click", function () {
+                  const index = this.getAttribute("data-index");
+                  increaseQuantity(index);
+                });
+              });
+
+            document
+              .querySelectorAll(".decrease-quantity")
+              .forEach((button) => {
+                button.addEventListener("click", function () {
+                  const index = this.getAttribute("data-index");
+                  decreaseQuantity(index);
+                });
+              });
           }
+        }
+
+        // Function to increase the quantity of an item in the cart
+        function increaseQuantity(index) {
+          const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+          cartItems[index].quantity += 1;
+          localStorage.setItem("cartItems", JSON.stringify(cartItems));
+          updateCartCounter();
+          loadCartItems();
+        }
+
+        // Function to decrease the quantity of an item in the cart
+        function decreaseQuantity(index) {
+          const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+          cartItems[index].quantity -= 1;
+
+          // If quantity is 0, remove the item from the cart
+          if (cartItems[index].quantity === 0) {
+            cartItems.splice(index, 1);
+          }
+
+          localStorage.setItem("cartItems", JSON.stringify(cartItems));
+          updateCartCounter();
+          loadCartItems();
+        }
+
+        // Update the cart counter
+        function updateCartCounter() {
+          const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+          const totalItems = cartItems.reduce(
+            (sum, item) => sum + item.quantity,
+            0
+          );
+          cartCounter.textContent = totalItems;
         }
 
         // Load cart items when page loads
         loadCartItems();
+        updateCartCounter(); // Update the cart counter when page loads
       });
       document.addEventListener("DOMContentLoaded", () => {
         const accordionHeaders = document.querySelectorAll(".accordion-header");

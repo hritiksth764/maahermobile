@@ -474,3 +474,17 @@ button:hover {
 .checkout-btn:hover {
   background-color: #555; /* Optional hover effect */
 }
+
+.cart-counter {
+  position: absolute;
+  top: 10px; /* Adjust this to position the counter as needed */
+  right: 12px; /* Adjust this to position the counter as needed */
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  padding: 2px 4px;
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+  min-width: 4px;
+}

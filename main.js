@@ -15,7 +15,58 @@
 // }
 
 // Call the function on page load
-window.onload = redirectToMobile;
+document.addEventListener("DOMContentLoaded", function () {
+  // Function to update cart counter from local storage
+  function updateCartCounter() {
+    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    const cartCounter = document.getElementById("cart-counter");
+
+    // Calculate the total quantity of items in the cart
+    const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+
+    if (totalItems > 0) {
+      cartCounter.textContent = totalItems; // Update the cart counter with the total number of items
+      cartCounter.classList.remove("hidden"); // Show the counter if it's hidden
+    } else {
+      cartCounter.classList.add("hidden"); // Hide the counter if there are no items
+    }
+  }
+
+  // Function to add a product to the cart
+  function addToCart(productName, productPrice) {
+    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+    // Check if the item is already in the cart
+    const existingItem = cartItems.find((item) => item.name === productName);
+    if (existingItem) {
+      existingItem.quantity += 1; // Increment quantity if the product is already in the cart
+    } else {
+      // Add new item to the cart
+      cartItems.push({
+        name: productName,
+        price: productPrice,
+        quantity: 1,
+      });
+    }
+
+    // Save updated cart to local storage
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    updateCartCounter(); // Update the cart counter
+  }
+
+  // Example: Update the cart counter when the page loads
+  updateCartCounter();
+
+  // Example: Add to cart functionality (replace with your actual product details)
+  const addToBagButton = document.getElementById("addToBag");
+  addToBagButton?.addEventListener("click", function () {
+    const productName = document.getElementById("productName").textContent;
+    const productPrice = parseInt(
+      document.getElementById("productPrice").textContent.replace(/[^0-9]/g, "")
+    );
+    addToCart(productName, productPrice);
+  });
+});
 
 document.addEventListener("DOMContentLoaded", function () {
   // Get elements
