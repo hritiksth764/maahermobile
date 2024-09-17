@@ -385,13 +385,3 @@ a {
 }
 
 /* Maintain the same color when hovering */
-a:hover {
-  color: inherit; /* Keeps the color same on hover */
-  text-decoration: underline; /* Optional: Adds underline on hover */
-}
-
-/* Maintain the same color when the link is active or visited */
-a:visited,
-a:active {
-  color: inherit; /* Keeps the same color for visited or active links */
-}
