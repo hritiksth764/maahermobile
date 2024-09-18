@@ -3,10 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Maaher - Mobile</title>
-    <link rel="stylesheet" href="styles.css" />
+    <title>Product - Gulaab</title>
+    <link rel="stylesheet" href="product.css" />
+    <!-- Link to the external CSS file -->
   </head>
   <body>
+    <!-- Header (Same as home page) -->
     <header class="header">
       <div class="logo">
         <svg
@@ -119,56 +121,82 @@
           />
         </svg>
         <span id="cart-counter" class="cart-counter">0</span>
+        <!-- Added badge -->
       </div>
     </header>
 
-    <div class="hero-section">
-      <img src="image.png" alt="Hero Image" class="hero-image" />
-    </div>
-    <!-- Cart Slider -->
-    <div id="cartSlider" class="cart-slider">
-      <div class="cart-header">
-        <button id="closeCart" class="close-cart-btn">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            fill="none"
-          >
-            <path
-              d="M1 1.01221L14.9758 14.988"
-              stroke="black"
-              stroke-width="2"
-              stroke-linecap="round"
-            />
-            <path
-              d="M15 1.01221L1.02424 14.988"
-              stroke="black"
-              stroke-width="2"
-              stroke-linecap="round"
-            />
-          </svg>
-        </button>
-        <h2>Your Cart</h2>
+    <!-- Horizontal Image Slider Section -->
+    <section class="image-slider">
+      <img src="pamduraLanding.png" alt="Product Image 1" />
+      <img src="pamduraLanding.png" alt="Product Image 2" />
+      <img src="productImages/image3.png" alt="Product Image 3" />
+    </section>
+
+    <!-- Product Details Section -->
+    <section class="product-details">
+      <h1 id="productName">Gulaab</h1>
+      <p id="productPrice">RS. 40,000</p>
+      <p>Tax included</p>
+
+      <button id="addToBag">Add to Bag</button>
+      <!-- <button id="buyNow">Buy Now</button> -->
+    </section>
+
+    <div class="accordion-container">
+      <!-- Accordion 1: Description -->
+      <div class="accordion-item">
+        <div class="accordion-header" data-accordion="description">
+          <h3>Description</h3>
+          <span class="accordion-icon">+</span>
+        </div>
+        <div class="accordion-content" id="description-content">
+          <p>
+            This is the description of the product. It will give detailed
+            information about the features and characteristics of the product.
+          </p>
+        </div>
       </div>
-      <div class="cart-content">
-        <p id="cartMessage">Your cart is empty!</p>
-        <ul id="cartItemsList"></ul>
-        <!-- Cart items will be injected here -->
-        <p id="cartTotal"></p>
-        <!-- Total price will be injected here -->
-        <button id="checkout-button" class="checkout-btn">Checkout</button>
+
+      <!-- Accordion 2: Details -->
+      <div class="accordion-item">
+        <div class="accordion-header" data-accordion="details">
+          <h3>Details</h3>
+          <span class="accordion-icon">+</span>
+        </div>
+        <div class="accordion-content" id="details-content">
+          <p>
+            This section contains specific details like size, color, and
+            material of the product.
+          </p>
+        </div>
+      </div>
+
+      <!-- Accordion 3: Shipping -->
+      <div class="accordion-item">
+        <div class="accordion-header" data-accordion="shipping">
+          <h3>Shipping</h3>
+          <span class="accordion-icon">+</span>
+        </div>
+        <div class="accordion-content" id="shipping-content">
+          <p>Information about shipping costs and delivery time.</p>
+        </div>
+      </div>
+
+      <!-- Accordion 4: Terms and Conditions -->
+      <div class="accordion-item">
+        <div class="accordion-header" data-accordion="terms">
+          <h3>Terms And Conditions</h3>
+          <span class="accordion-icon">+</span>
+        </div>
+        <div class="accordion-content" id="terms-content">
+          <p>
+            Details about return policies, warranty, and terms and conditions.
+          </p>
+        </div>
       </div>
     </div>
 
-    <!-- Info section that appears after scrolling -->
-    <section class="info-section">
-      <h2 class="info-heading">Heritage · Legacy · Identity</h2>
-      <p class="info-text">
-        Maaher, a call back to our maternal homes, gives us a chance to deeply
-        explore the tales behind our products — it is our way of reconnecting
-        with a time and space that shaped us.
-      </p>
+    <div class="svg-section">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="32"
@@ -181,131 +209,7 @@
           fill="#F4F1DF"
         />
       </svg>
-      <h3 class="sub-heading">A Future Helmed By Our Past</h3>
-
-      <div class="image-section">
-        <img
-          src="futurehelmed.png"
-          alt="Your Image Description"
-          class="main-image"
-        />
-        <p class="image-description">
-          Maaher, deeply rooted in Maharashtra's expansive culture, brings the
-          divine luxury of traditionally woven Paithani Sarees — acknowledging
-          what it means to come back home. Surrounded by the legacy forged by
-          our foremothers, we revive and celebrate — with joy, fulfilment, and
-          honour — the bold femininity and graceful audacity.
-          <br /><br />
-          Our cultural foundation was laid by the women that came before us — we
-          owe it to them to build on it. Our journeys, initiated by mothers and
-          daughters of times gone by, push forth with strength, empathy, and
-          respect.
-        </p>
-      </div>
-    </section>
-    <section class="new-section">
-      <h2 class="section-heading">Timeless Marks of Our Identities</h2>
-      <h3 class="sub-heading">Paithani Sarees</h3>
-
-      <p class="section-paragraph">
-        Expressions of our identity take form in our sarees, each plush with
-        their unique tales. With promised quality and authenticity, Maaher
-        presents to you a diverse collection.
-      </p>
-
-      <div class="image-container">
-        <a href="product.html">
-          <img
-            src="pamduraLanding.png"
-            alt="Paithani Saree"
-            class="section-image"
-          />
-        </a>
-      </div>
-      <div class="product-cards">
-        <div class="product-card">
-          <a href="Laal.html">
-            <div class="product-image">
-              <img src="productImages/image copy.png" alt="Laal" />
-            </div>
-            <h4>Laal</h4>
-            <p>Rs. 40,000</p>
-          </a>
-        </div>
-        <div class="product-card">
-          <a href="Pival.html">
-            <div class="product-image">
-              <img src="productImages/image copy 2.png" alt="Pival" />
-            </div>
-            <h4>Pival</h4>
-            <p>Rs. 35,000</p>
-          </a>
-        </div>
-        <div class="product-card">
-          <a href="Rouge.html">
-            <div class="product-image">
-              <img src="productImages/image copy 3.png" alt="Rouge" />
-            </div>
-            <h4>Rouge</h4>
-            <p>Rs. 40,000</p>
-          </a>
-        </div>
-        <div class="product-card">
-          <a href="Hiri.html">
-            <div class="product-image">
-              <img src="productImages/image copy 4.png" alt="Hiri" />
-            </div>
-            <h4>Hiri</h4>
-            <p>Rs. 40,000</p>
-          </a>
-        </div>
-        <div class="product-card">
-          <a href="Neel.html">
-            <div class="product-image">
-              <img src="productImages/image copy 5.png" alt="Neel" />
-            </div>
-            <h4>Neel</h4>
-            <p>Rs. 35,000</p>
-          </a>
-        </div>
-        <div class="product-card">
-          <a href="Harit.html">
-            <div class="product-image">
-              <img src="productImages/image copy 6.png" alt="Harit" />
-            </div>
-            <h4>Harit</h4>
-            <p>Rs. 30,000</p>
-          </a>
-        </div>
-        <div class="product-card">
-          <a href="Gulaal.html">
-            <div class="product-image">
-              <img src="productImages/image copy 7.png" alt="Gulaal" />
-            </div>
-            <h4>Gulaal</h4>
-            <p>Rs. 35,000</p>
-          </a>
-        </div>
-        <div class="product-card">
-          <a href="Gulaab.html">
-            <div class="product-image">
-              <img src="productImages/image copy 8.png" alt="Gulaab" />
-            </div>
-            <h4>Gulaab</h4>
-            <p>Rs. 30,000</p>
-          </a>
-        </div>
-      </div>
-    </section>
-    <section class="instagram-section">
-      <h2 class="section-heading">From our Instagram</h2>
-      <div class="instagram-grid">
-        <div class="instagram-post"></div>
-        <div class="instagram-post"></div>
-        <div class="instagram-post"></div>
-        <div class="instagram-post"></div>
-      </div>
-    </section>
+    </div>
 
     <section class="image-section-viewport">
       <img
@@ -452,70 +356,65 @@
         </div>
       </div>
     </footer>
-    <section class="footer-image-section">
-      <img src="footerimage.png" alt="Footer Image" class="footer-image" />
-    </section>
-    <script src="main.js"></script>
 
-    <!-- <script>
+    <!-- Cart Slider (Same as home page) -->
+    <div id="cartSlider" class="cart-slider">
+      <div class="cart-header">
+        <button id="closeCart" class="close-cart-btn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+          >
+            <path
+              d="M1 1.01221L14.9758 14.988"
+              stroke="black"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+            <path
+              d="M15 1.01221L1.02424 14.988"
+              stroke="black"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+        </button>
+        <h2>Your Cart</h2>
+      </div>
+      <div class="cart-content">
+        <p id="cartMessage">Your cart is empty!</p>
+        <ul id="cartItemsList"></ul>
+        <!-- Cart items will be injected here -->
+        <p id="cartTotal"></p>
+        <!-- Total price will be injected here -->
+      </div>
+      <button id="checkout-button" class="checkout-btn" style="display: none">
+        Checkout
+      </button>
+    </div>
+
+    <script>
+      // Cart Slider Functionality
       document.addEventListener("DOMContentLoaded", function () {
-        // Get elements
         const cartSlider = document.getElementById("cartSlider");
         const cartIcon = document.querySelector(".cart");
-        const closeCart = document.getElementById("closeCart");
-
-        // Open cart slider when cart icon is clicked
-        cartIcon.addEventListener("click", function () {
-          cartSlider.classList.add("active");
-        });
-
-        // Close cart slider when close button is clicked
-        closeCart.addEventListener("click", function () {
-          cartSlider.classList.remove("active");
-        });
-      });
-    </script>
-    <script>
-      // Cart Slider Functionality on Home Page
-      function loadCartItems() {
-        const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+        const closeCart = document.querySelector(".close-cart-btn svg");
+        const cartMessage = document.getElementById("cartMessage");
         const cartItemsList = document.getElementById("cartItemsList");
         const cartTotal = document.getElementById("cartTotal");
-        const cartMessage = document.getElementById("cartMessage");
+        const cartCounter = document.getElementById("cart-counter"); // Cart counter element
 
-        // Clear previous cart content
-        cartItemsList.innerHTML = "";
+        const productName = document.getElementById("productName").textContent;
+        const productPrice = parseInt(
+          document
+            .getElementById("productPrice")
+            .textContent.replace(/[^0-9]/g, "")
+        );
 
-        if (cartItems.length === 0) {
-          cartMessage.style.display = "block";
-          cartTotal.style.display = "none";
-        } else {
-          cartMessage.style.display = "none";
-          let total = 0;
-
-          cartItems.forEach((item) => {
-            const li = document.createElement("li");
-            li.textContent = `${item.name} - RS. ${item.price} x ${item.quantity}`;
-            cartItemsList.appendChild(li);
-
-            total += item.price * item.quantity;
-          });
-
-          cartTotal.textContent = `Total: RS. ${total}`;
-          cartTotal.style.display = "block";
-        }
-      }
-
-      // Call loadCartItems on page load
-      document.addEventListener("DOMContentLoaded", function () {
-        loadCartItems(); // Ensure cart is loaded properly on page load
-      });
-
-      // Cart functionality to show and hide the cart slider
-      document.addEventListener("DOMContentLoaded", function () {
-        const cartSlider = document.getElementById("cartSlider");
-        const cartIcon = document.querySelector(".cart");
-        const closeCart = document.getElementById("closeCart");
+        const addToBagButton = document.getElementById("addToBag");
 
         // Open cart slider when cart icon is clicked
         cartIcon.addEventListener("click", function () {
@@ -527,32 +426,169 @@
         closeCart.addEventListener("click", function () {
           cartSlider.classList.remove("active");
         });
-      });
-    </script>
-    <script>
-      // When the document is loaded
-      document.addEventListener("DOMContentLoaded", function () {
-        // Load cart items from localStorage
-        loadCartItems();
-      });
 
-      // Clear localStorage when the user closes the tab
-      window.addEventListener("beforeunload", function () {
-        // Clear specific cart data when the user closes the tab or window
-        localStorage.removeItem("cartItems");
+        // Add product to cart and store in local storage
+        addToBagButton.addEventListener("click", function () {
+          const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+          // Check if the item is already in the cart
+          const existingItem = cartItems.find(
+            (item) => item.name === productName
+          );
+          if (existingItem) {
+            existingItem.quantity += 1; // Increment quantity if the product is already in the cart
+          } else {
+            // Add new item to the cart
+            cartItems.push({
+              name: productName,
+              price: productPrice,
+              quantity: 1,
+            });
+          }
+
+          // Save updated cart to local storage
+          localStorage.setItem("cartItems", JSON.stringify(cartItems));
+          updateCartCounter(); // Update cart counter
+          loadCartItems(); // Refresh the cart UI
+        });
+
+        // Load cart items from local storage and display in the cart slider
+        function loadCartItems() {
+          const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+          // Clear previous cart content
+          cartItemsList.innerHTML = "";
+
+          if (cartItems.length === 0) {
+            cartMessage.style.display = "block";
+            cartTotal.style.display = "none";
+          } else {
+            cartMessage.style.display = "none";
+            let total = 0;
+
+            cartItems.forEach((item, index) => {
+              const li = document.createElement("li");
+
+              li.innerHTML = `
+          ${item.name} - RS. ${item.price} 
+          <div class="quantity-controls">
+            <button class="decrease-quantity" data-index="${index}">-</button>
+            <span class="quantity">${item.quantity}</span>
+            <button class="increase-quantity" data-index="${index}">+</button>
+          </div>
+        `;
+              cartItemsList.appendChild(li);
+
+              total += item.price * item.quantity;
+            });
+
+            cartTotal.textContent = `Total: RS. ${total}`;
+            cartTotal.style.display = "block";
+
+            // Add event listeners for the increase and decrease buttons
+            document
+              .querySelectorAll(".increase-quantity")
+              .forEach((button) => {
+                button.addEventListener("click", function () {
+                  const index = this.getAttribute("data-index");
+                  increaseQuantity(index);
+                });
+              });
+
+            document
+              .querySelectorAll(".decrease-quantity")
+              .forEach((button) => {
+                button.addEventListener("click", function () {
+                  const index = this.getAttribute("data-index");
+                  decreaseQuantity(index);
+                });
+              });
+          }
+        }
+
+        // Function to increase the quantity of an item in the cart
+        function increaseQuantity(index) {
+          const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+          cartItems[index].quantity += 1;
+          localStorage.setItem("cartItems", JSON.stringify(cartItems));
+          updateCartCounter();
+          loadCartItems();
+        }
+
+        // Function to decrease the quantity of an item in the cart
+        function decreaseQuantity(index) {
+          const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+          cartItems[index].quantity -= 1;
+
+          // If quantity is 0, remove the item from the cart
+          if (cartItems[index].quantity === 0) {
+            cartItems.splice(index, 1);
+          }
+
+          localStorage.setItem("cartItems", JSON.stringify(cartItems));
+          updateCartCounter();
+          loadCartItems();
+        }
+
+        // Update the cart counter
+        function updateCartCounter() {
+          const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+          const totalItems = cartItems.reduce(
+            (sum, item) => sum + item.quantity,
+            0
+          );
+          cartCounter.textContent = totalItems;
+        }
+
+        // Load cart items when page loads
+        loadCartItems();
+        updateCartCounter(); // Update the cart counter when page loads
       });
-      // Function to update the checkout button visibility
-      // Function to update the checkout button visibility
+      document.addEventListener("DOMContentLoaded", () => {
+        const accordionHeaders = document.querySelectorAll(".accordion-header");
+
+        accordionHeaders.forEach((header) => {
+          header.addEventListener("click", () => {
+            const contentId =
+              header.getAttribute("data-accordion") + "-content";
+            const content = document.getElementById(contentId);
+
+            // Toggle content
+            if (content.classList.contains("accordion-open")) {
+              content.style.maxHeight = null;
+              content.classList.remove("accordion-open");
+              header.querySelector(".accordion-icon").textContent = "+";
+            } else {
+              // Close all other open accordions
+              document
+                .querySelectorAll(".accordion-content")
+                .forEach((item) => {
+                  item.style.maxHeight = null;
+                  item.classList.remove("accordion-open");
+                });
+              document.querySelectorAll(".accordion-icon").forEach((icon) => {
+                icon.textContent = "+";
+              });
+
+              // Open the clicked accordion
+              content.style.maxHeight = content.scrollHeight + "px";
+              content.classList.add("accordion-open");
+              header.querySelector(".accordion-icon").textContent = "-";
+            }
+          });
+        });
+      });
       function updateCheckoutButton() {
-        const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
         const checkoutButton = document.getElementById("checkout-button");
 
-        if (cartItems.length > 0) {
-          checkoutButton.style.display = "block"; // Show the button if cart is not empty
-        } else {
-          checkoutButton.style.display = "none"; // Hide the button if cart is empty
-        }
+        // Always display the checkout button
+        checkoutButton.style.display = "block";
       }
+
+      // Call the function when the page loads
+      document.addEventListener("DOMContentLoaded", function () {
+        updateCheckoutButton(); // Ensure the checkout button is always visible on load
+      });
 
       // Call the function when the page loads
       document.addEventListener("DOMContentLoaded", function () {
@@ -576,6 +612,57 @@
 
         updateCheckoutButton(); // Update the button visibility after removing items
       }
-    </script> -->
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const cartItemsList = document.getElementById("cartItemsList");
+        const cartTotal = document.getElementById("cartTotal");
+        const checkoutButton = document.getElementById("checkout-button");
+        const cartMessage = document.getElementById("cartMessage");
+
+        // Function to load cart items from local storage
+        function loadCartItems() {
+          const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+          // Clear previous cart content
+          cartItemsList.innerHTML = "";
+
+          if (cartItems.length === 0) {
+            cartTotal.textContent = "";
+            cartMessage.textContent = "Your cart is empty!";
+          } else {
+            let total = 0;
+            cartMessage.textContent = ""; // Clear the empty cart message
+
+            cartItems.forEach((item) => {
+              const li = document.createElement("li");
+              li.textContent = `${item.name} - RS. ${item.price} x ${item.quantity}`;
+              cartItemsList.appendChild(li);
+
+              total += item.price * item.quantity;
+            });
+
+            cartTotal.textContent = `Total: RS. ${total}`;
+          }
+        }
+
+        // Handle Checkout button click
+        checkoutButton.addEventListener("click", function () {
+          const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+          if (cartItems.length === 0) {
+            // If cart is empty, show an alert message
+            alert(
+              "Please add items to your cart before proceeding to checkout."
+            );
+          } else {
+            // Redirect to userform.html if the cart has items
+            window.location.href = "UserForm.html";
+          }
+        });
+
+        // Load cart items when the page loads
+        loadCartItems();
+      });
+    </script>
   </body>
 </html>

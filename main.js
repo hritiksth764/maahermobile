@@ -1,20 +1,3 @@
-// Document ready function
-// function redirectToMobile() {
-//   const isMobile = window.innerWidth <= 768; // Define mobile width threshold
-//   const currentUrl = window.location.href;
-
-//   // Check if the current URL is the desktop site on custom domain and user is on a mobile device
-//   if (isMobile && currentUrl.includes("maaher.life")) {
-//     window.location.href = "https://maahermobile.vercel.app";
-//   }
-
-//   // Optional: Redirect back to desktop if user resizes window to desktop size
-//   if (!isMobile && currentUrl.includes("maaher.life")) {
-//     window.location.href = "https://maaher.vercel.app";
-//   }
-// }
-
-// Call the function on page load
 document.addEventListener("DOMContentLoaded", function () {
   // Function to update cart counter from local storage
   function updateCartCounter() {
@@ -76,7 +59,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const cartItemsList = document.getElementById("cartItemsList");
   const cartTotal = document.getElementById("cartTotal");
   const cartMessage = document.getElementById("cartMessage");
-  const checkoutButton = document.getElementById("checkout-button");
 
   // Open cart slider when cart icon is clicked
   cartIcon.addEventListener("click", function () {
@@ -125,24 +107,30 @@ document.addEventListener("DOMContentLoaded", function () {
   loadCartItems(); // Ensure cart is loaded properly on page load
   updateCheckoutButton(); // Update the button visibility on load
 
-  // Clear localStorage when the user closes the tab
-  window.addEventListener("beforeunload", function () {
-    localStorage.removeItem("cartItems");
-  });
+  // Example: Function to add items to cart
+  function addToCart(productName, productPrice) {
+    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+    // Check if the item is already in the cart
+    const existingItem = cartItems.find((item) => item.name === productName);
+    if (existingItem) {
+      existingItem.quantity += 1; // Increment quantity if the product is already in the cart
+    } else {
+      // Add new item to the cart
+      cartItems.push({
+        name: productName,
+        price: productPrice,
+        quantity: 1,
+      });
+    }
+
+    // Save updated cart to local storage
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    updateCartCounter(); // Update the cart counter
+  }
+
+  // Clear localStorage when the user closes the tab (only if necessary)
+  // window.addEventListener("beforeunload", function () {
+  //   localStorage.removeItem("cartItems");
+  // });
 });
-
-// Example: Function to add items to cart
-function addToCart(product) {
-  let cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-  cartItems.push(product);
-  localStorage.setItem("cart", JSON.stringify(cartItems));
-  updateCheckoutButton(); // Update the button visibility after adding items
-}
-
-// Example: Function to remove items from cart
-function removeFromCart(productId) {
-  let cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-  cartItems = cartItems.filter((item) => item.id !== productId);
-  localStorage.setItem("cart", JSON.stringify(cartItems));
-  updateCheckoutButton(); // Update the button visibility after removing items
-}
