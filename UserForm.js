@@ -22,14 +22,11 @@ function displayCart() {
   });
 
   cartHtml += `
-      </ul>
-      <p><strong>Subtotal:</strong> RS. ${total}</p>
-      <p><strong>Shipping:</strong> RS. 50</p>
-      <p><strong>GST:</strong> RS. ${(total * 0.18).toFixed(2)}</p>
-      <p><strong>Total:</strong> RS. ${(total + 50 + total * 0.18).toFixed(
-        2
-      )}</p>
-  `;
+  </ul>
+  <p><strong>Subtotal:</strong> RS. ${total}</p>
+  <p><strong>Shipping:</strong> RS. 50</p>
+  <p><strong>Total:</strong> RS. ${(total + 50).toFixed(2)}</p>
+`;
 
   cartDetails.innerHTML = cartHtml;
 }
