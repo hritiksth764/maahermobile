@@ -90,27 +90,46 @@ html {
 }
 
 .product-details {
-  padding: 20px;
+  padding: 0 20px;
+  padding-top: 30px;
   background: #fbf9f2;
 }
 
 .product-details h1 {
-  font-size: 24px;
-  margin-bottom: 10px;
+  color: #000;
+
+  font-family: Lora;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
 
 .product-details p {
   margin: 5px 0;
-  font-size: 16px;
+  color: #000;
+
+  font-family: Lora;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
 
 button {
-  padding: 10px 20px;
-  margin: 10px 5px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  cursor: pointer;
+  margin-top: 32px;
+  margin-bottom: 56px;
+  width: 160px;
+  display: flex;
+  padding: 8px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex: 1 0 0;
+  border-radius: 4px;
+  border: 1px solid #351d0d;
+
+  background: #fbf9f2;
 }
 
 button:hover {
@@ -184,7 +203,7 @@ button:hover {
 
 .accordion-container {
   width: auto;
-  margin: 24px 16px;
+  margin: 0px 16px;
 }
 
 /* .accordion-container {
@@ -205,9 +224,14 @@ button:hover {
 }
 
 .accordion-header h3 {
+  color: #000;
+
+  font-family: Lora;
   font-size: 16px;
-  margin: 0;
-  font-weight: 500;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: capitalize;
 }
 
 .accordion-icon {
