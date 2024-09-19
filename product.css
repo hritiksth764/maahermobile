@@ -521,12 +521,12 @@ button:hover {
 
 .cart-counter {
   position: absolute;
-  top: 10px; /* Adjust this to position the counter as needed */
-  right: 12px; /* Adjust this to position the counter as needed */
+  top: 12px; /* Adjust this to position the counter as needed */
+  right: 13px; /* Adjust this to position the counter as needed */
   background-color: red;
   color: white;
-  font-size: 10px;
-  padding: 2px 4px;
+  font-size: 8px;
+  padding: 2px 5px;
   border-radius: 50%;
   display: inline-block;
   text-align: center;
