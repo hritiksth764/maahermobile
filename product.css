@@ -531,3 +531,8 @@ button:hover {
   display: inline-block;
   text-align: center;
 }
+
+a {
+  text-decoration: none;
+  color: #1e1e1e;
+}
