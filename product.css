@@ -282,7 +282,7 @@ button:hover {
 }
 
 .image-section-viewport {
-  height: 50vh; /* 50% of viewport height */
+  height: auto; /* 50% of viewport height */
   width: 100%;
   overflow: hidden;
 }

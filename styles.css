@@ -8,6 +8,7 @@ body,
 html {
   height: 100%;
   font-family: "Arial", sans-serif;
+  background-color: #fffef9 !important;
 }
 @font-face {
   font-family: "Lora";
@@ -286,7 +287,7 @@ html {
 }
 
 .product-card {
-  border: 1px solid #ddd;
+  /* border: 1px solid #ddd; */
   border-radius: 0px;
   padding: 0px;
   width: calc(50% - 6px); /* Each card takes half the width minus the gap */
@@ -345,6 +346,7 @@ html {
 
 a {
   text-decoration: none;
+  color: #1e1e1e;
 }
 
 .instagram-grid {
@@ -364,7 +366,7 @@ a {
 
 /* Image Section covering 50% of viewport height */
 .image-section-viewport {
-  height: 50vh; /* 50% of viewport height */
+  height: auto; /* 50% of viewport height */
   width: 100%;
   overflow: hidden;
 }
