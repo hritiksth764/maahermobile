@@ -489,6 +489,19 @@ button:hover {
   height: 14px;
 }
 
+/* last footer image section */
+.footer-image-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-image {
+  width: 100%; /* This makes sure the image spans the entire width of the viewport */
+  height: auto;
+}
+
 .checkout-btn {
   width: 100%;
   padding: 15px;
