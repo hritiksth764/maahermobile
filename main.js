@@ -85,13 +85,27 @@ document.addEventListener("DOMContentLoaded", function () {
       cartMessage.style.display = "none";
       let total = 0;
 
-      cartItems.forEach((item) => {
+      // Loop through cart items and create the cart structure
+      cartItems.forEach((item, index) => {
         const li = document.createElement("li");
-        li.textContent = `${item.name} - RS. ${item.price} x ${item.quantity}`;
+
+        // Create the HTML structure for each cart item
+        li.innerHTML = `
+  <div class="cart-item">
+    <div class="product-name">${item.name}</div>
+    <div class="product-price">RS. ${item.price}</div>
+
+  </div>
+`;
+
+        // Append the item to the cart items list
         cartItemsList.appendChild(li);
+
+        // Calculate the total price
         total += item.price * item.quantity;
       });
 
+      // Update the total price in the cart
       cartTotal.textContent = `Total: RS. ${total}`;
       cartTotal.style.display = "block";
     }

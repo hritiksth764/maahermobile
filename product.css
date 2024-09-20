@@ -139,9 +139,9 @@ html {
   line-height: 20px; /* 142.857% */
 }
 
-button:hover {
+/* button:hover {
   background-color: #45a049;
-}
+} */
 
 /* Cart Slider Styles */
 .cart-slider {
@@ -174,7 +174,14 @@ button:hover {
 .cart-header h2 {
   font-size: 18px; /* Mobile-friendly font size */
   margin-top: 100px;
-  color: #333;
+
+  color: #000;
+
+  font-family: Rubik;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 32px; /* 133.333% */
 }
 
 .close-cart-btn {
@@ -536,4 +543,66 @@ button:hover {
 a {
   text-decoration: none;
   color: #1e1e1e;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Spacing between buttons and quantity */
+}
+
+.quantity-controls button {
+  width: 30px;
+  height: 30px;
+  background: #f4f1df; /* Light gray background */
+  color: #000000;
+  /* border: 1px solid #ccc; Light border */
+  border-radius: 5px; /* Rounded corners */
+  font-size: 18px; /* Font size for + and - symbols */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+/* .quantity-controls button:hover {
+  background-color: #e0e0e0; /* Slightly darker background on hover 
+} */
+
+.quantity-controls .quantity {
+  font-size: 16px;
+  font-weight: bold;
+  min-width: 30px; /* Ensures consistent spacing */
+  text-align: center; /* Centers the number */
+}
+.cart-item {
+  display: flex;
+  flex-direction: column; /* Stack product name, price, and quantity controls */
+  margin-bottom: 30px; /* Space between cart items */
+  padding: 10px; /* Padding inside each cart item */
+  border-bottom: 1px solid #e0e0e0; /* Divider between items */
+}
+
+.product-name {
+  /* * Slightly larger font size */
+  margin-bottom: 5px; /* Space below the product name */
+  color: #000;
+
+  font-family: Rubik;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 32px; /* 133.333% */
+}
+
+.product-price {
+  color: #000;
+
+  font-family: Rubik;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 10px; /* Space below the price */
 }

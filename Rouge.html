@@ -471,22 +471,31 @@
             cartMessage.style.display = "none";
             let total = 0;
 
+            // Loop through cart items and create the cart structure
             cartItems.forEach((item, index) => {
               const li = document.createElement("li");
 
+              // Create the HTML structure for each cart item
               li.innerHTML = `
-          ${item.name} - RS. ${item.price} 
+        <div class="cart-item">
+          <div class="product-name">${item.name}</div>
+          <div class="product-price">RS. ${item.price}</div>
           <div class="quantity-controls">
             <button class="decrease-quantity" data-index="${index}">-</button>
             <span class="quantity">${item.quantity}</span>
             <button class="increase-quantity" data-index="${index}">+</button>
           </div>
-        `;
+        </div>
+      `;
+
+              // Append the item to the cart items list
               cartItemsList.appendChild(li);
 
+              // Calculate the total price
               total += item.price * item.quantity;
             });
 
+            // Update the total price in the cart
             cartTotal.textContent = `Total: RS. ${total}`;
             cartTotal.style.display = "block";
 
