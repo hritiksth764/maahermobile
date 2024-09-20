@@ -291,20 +291,19 @@ html {
   color: #fff; /* White text color */
 }
 
-.product-name {
+.image-overlay .product-name {
   color: #fffef9;
 
-  font-family: Lora;
+  font-family: Lora2;
   font-size: 14px;
-  font-style: normal;
+  font-style: italic;
   font-weight: 600;
   line-height: 18px; /* 128.571% */
 }
 
-.product-price {
+.image-overlay .product-price {
   text-align: left;
   color: #fffef9;
-
   /* text-align: center; */
   font-family: Rubik;
   font-size: 12px;
