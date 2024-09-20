@@ -8,25 +8,28 @@ function displayCart() {
     return;
   }
 
-  let cartHtml = "<ul>";
+  let cartHtml = "<ul class='cart-items-list'>";
   let total = 0;
 
   cartItems.forEach((item) => {
     cartHtml += `
-          <li>
-              <p>${item.name} - RS. ${item.price} x ${item.quantity}</p>
-              <p><a href="#" onclick="removeItemFromCart('${item.name}')">Remove</a></p>
-          </li>
-      `;
+      <li class="cart-item">
+        <p class="product-name">${item.name}</p>
+        <p class="product-price">RS. ${item.price} x ${item.quantity}</p>
+        <p><a href="#" onclick="removeItemFromCart('${item.name}')" class="remove-link">Remove</a></p>
+      </li>
+    `;
     total += item.price * item.quantity;
   });
 
   cartHtml += `
-  </ul>
-  <p><strong>Subtotal:</strong> RS. ${total}</p>
-  <p><strong>Shipping:</strong> RS. 50</p>
-  <p><strong>Total:</strong> RS. ${(total + 50).toFixed(2)}</p>
-`;
+    </ul>
+    <div class="cart-summary">
+      <p><strong>Subtotal:</strong> RS. ${total}</p>
+      <p><strong>Shipping:</strong> RS. 50</p>
+      <p><strong>Total:</strong> RS. ${(total + 50).toFixed(2)}</p>
+    </div>
+  `;
 
   cartDetails.innerHTML = cartHtml;
 }
