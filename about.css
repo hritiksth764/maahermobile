@@ -272,6 +272,7 @@ html {
 }
 
 .footer-subscribe h3 {
+  text-align: right;
   width: auto;
   color: #1e1e1e;
   font-family: Rubik;
@@ -283,7 +284,7 @@ html {
 
 .footer-subscribe form {
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: space-between;
   gap: 10px; /* Space between input and button */
   color: #232323;
