@@ -88,7 +88,7 @@ document.getElementById("buyNowBtn").addEventListener("click", function () {
 
   // Razorpay options
   const options = {
-    key: "rzp_test_nqtmUnMF9r43qM", // Replace with your Razorpay API key
+    key: "rzp_live_mg4IkuDxgDAvvz", // Replace with your Razorpay API key
     amount:
       cartItems.reduce((total, item) => total + item.price * item.quantity, 0) *
       100, // Amount in paisa
