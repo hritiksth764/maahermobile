@@ -272,6 +272,7 @@ html {
 
 /* Footer Subscribe on the Right */
 .footer-subscribe {
+  top: 0;
   flex: 1; /* Takes up space on the right */
   text-align: right;
 }
@@ -284,7 +285,8 @@ html {
   font-size: 10px !important;
   font-style: normal;
   font-weight: 600;
-  line-height: 18px !important; /* 233.333% */
+  line-height: 14px !important; /* 233.333% */
+  margin-bottom: 4px;
 }
 
 .footer-subscribe form {

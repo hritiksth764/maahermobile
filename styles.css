@@ -50,7 +50,7 @@ html {
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  position: absolute;
+  position: fixed;
   top: 0;
   width: 100%;
   z-index: 10;
@@ -522,6 +522,7 @@ a {
 
 /* Footer Subscribe on the Right */
 .footer-subscribe {
+  flex: top;
   flex: 1; /* Takes up space on the right */
   text-align: left;
 }
@@ -532,7 +533,8 @@ a {
   font-size: 10px;
   font-style: normal;
   font-weight: 600;
-  line-height: 18px; /* 233.333% */
+  line-height: 14px; /* 233.333% */
+  margin-bottom: 4px;
 }
 
 .footer-subscribe form {
