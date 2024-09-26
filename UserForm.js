@@ -82,9 +82,7 @@ document.getElementById("buyNowBtn").addEventListener("click", function () {
   console.log("Cart Items:", cartItems); // Debugging
 
   if (!userInfo || cartItems.length === 0) {
-    alert(
-      "Please fill in your details and add items to the cart before proceeding."
-    );
+    alert("Please fill in your details");
     return;
   }
 
