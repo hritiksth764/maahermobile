@@ -150,7 +150,7 @@
     <!-- Product Details Section -->
     <section class="product-details">
       <h1 id="productName">Pival</h1>
-      <p id="productPrice">RS. 35,000</p>
+      <p id="productPrice">₹35,000</p>
       <p>Tax included</p>
 
       <button id="addToBag">Add to Bag</button>
@@ -518,7 +518,7 @@
               li.innerHTML = `
         <div class="cart-item">
           <div class="product-name">${item.name}</div>
-          <div class="product-price">RS. ${item.price}</div>
+          <div class="product-price">₹${item.price}</div>
           <div class="quantity-controls">
             <button class="decrease-quantity" data-index="${index}">-</button>
             <span class="quantity">${item.quantity}</span>
@@ -535,7 +535,7 @@
             });
 
             // Update the total price in the cart
-            cartTotal.textContent = `Total: RS. ${total}`;
+            cartTotal.textContent = `Total: ₹${total}`;
             cartTotal.style.display = "block";
 
             // Add event listeners for the increase and decrease buttons
@@ -688,13 +688,13 @@
 
             cartItems.forEach((item) => {
               const li = document.createElement("li");
-              li.textContent = `${item.name} - RS. ${item.price} x ${item.quantity}`;
+              li.textContent = `${item.name} - ₹${item.price} x ${item.quantity}`;
               cartItemsList.appendChild(li);
 
               total += item.price * item.quantity;
             });
 
-            cartTotal.textContent = `Total: RS. ${total}`;
+            cartTotal.textContent = `Total: ₹${total}`;
           }
         }
 

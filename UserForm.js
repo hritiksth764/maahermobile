@@ -14,7 +14,7 @@ function displayCart() {
     cartHtml += `
       <li class="cart-item">
         <p class="product-name">${item.name}</p>
-        <p class="product-price">RS. ${item.price} x ${item.quantity}</p>
+        <p class="product-price">₹${item.price} x ${item.quantity}</p>
         <p><a href="#" onclick="removeItemFromCart('${item.name}')" class="remove-link">Remove</a></p>
       </li>
     `;
@@ -24,9 +24,9 @@ function displayCart() {
   cartHtml += `
     </ul>
     <div class="cart-summary">
-      <p><strong>Subtotal:</strong> RS. ${total}</p>
-      <p><strong>Shipping:</strong> RS. 50</p>
-      <p><strong>Total:</strong> RS. ${(total + 50).toFixed(2)}</p>
+      <p><strong>Subtotal:</strong> ₹${total}</p>
+      <p><strong>Shipping:</strong> ₹50</p>
+      <p><strong>Total:</strong> ₹${(total + 50).toFixed(2)}</p>
     </div>
   `;
 
