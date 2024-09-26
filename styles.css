@@ -74,6 +74,11 @@ html {
   /* Adjust fill color if needed */
 }
 
+.logo svg {
+  width: 32px;
+  height: 22.41px;
+}
+
 /* cart slider */
 /* Cart Slider Base Styles */
 .cart-slider {
