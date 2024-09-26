@@ -527,7 +527,7 @@ a {
   font-size: 12px;
   font-style: normal;
   font-weight: 600;
-  line-height: 28px; /* 233.333% */
+  line-height: 18px; /* 233.333% */
 }
 
 .footer-subscribe form {
