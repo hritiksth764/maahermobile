@@ -265,6 +265,14 @@ html {
 .accordion-content p {
   margin: 0;
   padding: 16px 0;
+  text-transform: capitalize;
+  color: #0f0f0f;
+  font-family: Rubik;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 166.667% */
+  text-transform: capitalize;
 }
 
 .accordion-open .accordion-icon {
