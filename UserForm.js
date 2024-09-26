@@ -1,4 +1,3 @@
-// Fetch the cart from local storage and display it on the page
 function displayCart() {
   const cartDetails = document.getElementById("cartDetails");
   const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
@@ -42,8 +41,8 @@ function removeItemFromCart(productName) {
   displayCart();
 }
 
-// Check if all required fields are filled to enable the "Buy Now" button
-function checkFormCompletion() {
+// Function to show alert for missing fields
+function validateForm() {
   const email = document.getElementById("email").value;
   const phone = document.getElementById("phone").value;
   const firstName = document.getElementById("firstName").value;
@@ -53,36 +52,55 @@ function checkFormCompletion() {
   const state = document.getElementById("state").value;
   const pin = document.getElementById("pin").value;
 
-  // Check if all required fields are filled
-  if (
-    email &&
-    phone &&
-    firstName &&
-    lastName &&
-    address1 &&
-    city &&
-    state &&
-    pin
-  ) {
-    document.getElementById("buyNowBtn").disabled = false;
-  } else {
-    document.getElementById("buyNowBtn").disabled = true;
+  // Check for missing fields and show alert message
+  if (!email) {
+    alert("Email is required.");
+    return false;
   }
-}
+  if (!phone) {
+    alert("Phone number is required.");
+    return false;
+  }
+  if (!firstName) {
+    alert("First name is required.");
+    return false;
+  }
+  if (!lastName) {
+    alert("Last name is required.");
+    return false;
+  }
+  if (!address1) {
+    alert("Address Line 1 is required.");
+    return false;
+  }
+  if (!city) {
+    alert("City is required.");
+    return false;
+  }
+  if (!state) {
+    alert("State is required.");
+    return false;
+  }
+  if (!pin) {
+    alert("PIN Code is required.");
+    return false;
+  }
 
-// Attach change event listeners to all form fields
-document.querySelectorAll("#userForm input").forEach((input) => {
-  input.addEventListener("input", checkFormCompletion);
-});
+  return true; // All fields are filled
+}
 
 // Fetch cart details from local storage on page load
 window.onload = function () {
   displayCart();
-  checkFormCompletion(); // Check form completion on page load
 };
 
 // Buy Now button functionality with Razorpay integration
 document.getElementById("buyNowBtn").addEventListener("click", function () {
+  // Validate form fields before proceeding
+  if (!validateForm()) {
+    return;
+  }
+
   const userInfo = {
     email: document.getElementById("email").value,
     phone: document.getElementById("phone").value,
@@ -115,8 +133,8 @@ document.getElementById("buyNowBtn").addEventListener("click", function () {
       cartItems.reduce((total, item) => total + item.price * item.quantity, 0) *
       100, // Amount in paisa
     currency: "INR",
-    name: "MAAHER",
-    description: "Transaction",
+    name: "Your Store",
+    description: "Test Transaction",
     handler: function (response) {
       // On successful payment, send order details to serverless function
       fetch("/api/sendOrderEmail", {
