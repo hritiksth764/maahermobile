@@ -419,10 +419,10 @@ html {
   color: #1e1e1e;
   text-align: left !important;
   font-family: Rubik;
-  font-size: 12px;
+  font-size: 10px;
   font-style: normal;
   font-weight: 600;
-  line-height: 28px; /* 233.333% */
+  line-height: 18px !important; /* 233.333% */
 }
 
 .footer-subscribe form {
@@ -641,7 +641,8 @@ a {
   padding: 12px 50px 12px 15px; /* Space for button inside */
   border: 1px solid #4b2e28; /* Border color */
   border-radius: 5px; /* Rounded corners */
-  font-size: 14px; /* Adjust font size */
+  font-size: 10px; /* Adjust font size */
+  height: 16px !important;
 }
 
 /* Style for the submit button */
@@ -669,6 +670,6 @@ a {
 /* Optional: Adjust SVG icon inside the button */
 .input-wrapper button svg {
   fill: white; /* White fill color for the icon */
-  width: 16px; /* Adjust width */
-  height: 16px; /* Adjust height */
+  width: auto; /* Adjust width */
+  height: 4px !important; /* Adjust height */
 }
