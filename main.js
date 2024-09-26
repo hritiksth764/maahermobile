@@ -49,10 +49,8 @@ document.addEventListener("DOMContentLoaded", function () {
     );
     addToCart(productName, productPrice);
   });
-});
 
-document.addEventListener("DOMContentLoaded", function () {
-  // Get elements
+  // Get elements for the cart slider
   const cartSlider = document.getElementById("cartSlider");
   const cartIcon = document.querySelector(".cart");
   const closeCart = document.getElementById("closeCart");
@@ -91,12 +89,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Create the HTML structure for each cart item
         li.innerHTML = `
-  <div class="cart-item">
-    <div class="product-name">${item.name}</div>
-    <div class="product-price">RS. ${item.price}</div>
-
-  </div>
-`;
+        <div class="cart-item">
+          <div class="product-name">${item.name}</div>
+          <div class="product-price">RS. ${item.price}</div>
+        </div>
+        `;
 
         // Append the item to the cart items list
         cartItemsList.appendChild(li);
@@ -117,34 +114,27 @@ document.addEventListener("DOMContentLoaded", function () {
     checkoutButton.style.display = "block"; // Always show the checkout button
   }
 
+  // Function to handle checkout button click
+  function handleCheckout() {
+    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+    // Check if the cart is not empty
+    if (cartItems.length > 0) {
+      window.location.href = "UserForm.html"; // Redirect to UserForm.html
+    } else {
+      alert(
+        "Your cart is empty. Please add items to the cart before proceeding to checkout."
+      );
+    }
+  }
+
+  // Adding event listener to the checkout button
+  const checkoutButton = document.getElementById("checkout-button");
+  if (checkoutButton) {
+    checkoutButton.addEventListener("click", handleCheckout);
+  }
+
   // Call loadCartItems on page load
   loadCartItems(); // Ensure cart is loaded properly on page load
   updateCheckoutButton(); // Update the button visibility on load
-
-  // Example: Function to add items to cart
-  function addToCart(productName, productPrice) {
-    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-
-    // Check if the item is already in the cart
-    const existingItem = cartItems.find((item) => item.name === productName);
-    if (existingItem) {
-      existingItem.quantity += 1; // Increment quantity if the product is already in the cart
-    } else {
-      // Add new item to the cart
-      cartItems.push({
-        name: productName,
-        price: productPrice,
-        quantity: 1,
-      });
-    }
-
-    // Save updated cart to local storage
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
-    updateCartCounter(); // Update the cart counter
-  }
-
-  // Clear localStorage when the user closes the tab (only if necessary)
-  // window.addEventListener("beforeunload", function () {
-  //   localStorage.removeItem("cartItems");
-  // });
 });
