@@ -42,49 +42,71 @@ function removeItemFromCart(productName) {
   displayCart();
 }
 
-// Save user details to local storage when the form is submitted
-document
-  .getElementById("userForm")
-  .addEventListener("submit", function (event) {
-    event.preventDefault();
+// Check if all required fields are filled to enable the "Buy Now" button
+function checkFormCompletion() {
+  const email = document.getElementById("email").value;
+  const phone = document.getElementById("phone").value;
+  const firstName = document.getElementById("firstName").value;
+  const lastName = document.getElementById("lastName").value;
+  const address1 = document.getElementById("address1").value;
+  const city = document.getElementById("city").value;
+  const state = document.getElementById("state").value;
+  const pin = document.getElementById("pin").value;
 
-    const userInfo = {
-      email: document.getElementById("email").value,
-      phone: document.getElementById("phone").value,
-      firstName: document.getElementById("firstName").value,
-      lastName: document.getElementById("lastName").value,
-      country: document.getElementById("country").value,
-      address1: document.getElementById("address1").value,
-      address2: document.getElementById("address2").value,
-      city: document.getElementById("city").value,
-      state: document.getElementById("state").value,
-      pin: document.getElementById("pin").value,
-    };
+  // Check if all required fields are filled
+  if (
+    email &&
+    phone &&
+    firstName &&
+    lastName &&
+    address1 &&
+    city &&
+    state &&
+    pin
+  ) {
+    document.getElementById("buyNowBtn").disabled = false;
+  } else {
+    document.getElementById("buyNowBtn").disabled = true;
+  }
+}
 
-    console.log("Saving user info:", userInfo);
-
-    localStorage.setItem("userInfo", JSON.stringify(userInfo));
-
-    alert("User information saved successfully!");
-  });
+// Attach change event listeners to all form fields
+document.querySelectorAll("#userForm input").forEach((input) => {
+  input.addEventListener("input", checkFormCompletion);
+});
 
 // Fetch cart details from local storage on page load
 window.onload = function () {
   displayCart();
+  checkFormCompletion(); // Check form completion on page load
 };
 
 // Buy Now button functionality with Razorpay integration
 document.getElementById("buyNowBtn").addEventListener("click", function () {
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const userInfo = {
+    email: document.getElementById("email").value,
+    phone: document.getElementById("phone").value,
+    firstName: document.getElementById("firstName").value,
+    lastName: document.getElementById("lastName").value,
+    country: document.getElementById("country").value,
+    address1: document.getElementById("address1").value,
+    address2: document.getElementById("address2").value,
+    city: document.getElementById("city").value,
+    state: document.getElementById("state").value,
+    pin: document.getElementById("pin").value,
+  };
+
   const cartItems = JSON.parse(localStorage.getItem("cartItems"));
 
-  console.log("User Info:", userInfo); // Debugging
-  console.log("Cart Items:", cartItems); // Debugging
-
-  if (!userInfo || cartItems.length === 0) {
-    alert("Please fill in your details");
+  if (cartItems.length === 0) {
+    alert(
+      "Your cart is empty. Please add items to your cart before proceeding to buy."
+    );
     return;
   }
+
+  // Save user info to local storage
+  localStorage.setItem("userInfo", JSON.stringify(userInfo));
 
   // Razorpay options
   const options = {
@@ -93,8 +115,8 @@ document.getElementById("buyNowBtn").addEventListener("click", function () {
       cartItems.reduce((total, item) => total + item.price * item.quantity, 0) *
       100, // Amount in paisa
     currency: "INR",
-    name: "Your Store",
-    description: "Test Transaction",
+    name: "MAAHER",
+    description: "Transaction",
     handler: function (response) {
       // On successful payment, send order details to serverless function
       fetch("/api/sendOrderEmail", {
@@ -104,7 +126,7 @@ document.getElementById("buyNowBtn").addEventListener("click", function () {
         },
         body: JSON.stringify({
           payment_id: response.razorpay_payment_id,
-          userInfo, //this needs to have firstName
+          userInfo, // Include user info
           cartItems,
         }),
       })
