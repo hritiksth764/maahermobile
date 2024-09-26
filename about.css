@@ -272,7 +272,7 @@ html {
 }
 
 .footer-subscribe h3 {
-  text-align: right;
+  text-align: left !important;
   width: 100%;
   color: #1e1e1e;
   font-family: Rubik;
