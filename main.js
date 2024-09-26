@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
         li.innerHTML = `
         <div class="cart-item">
           <div class="product-name">${item.name}</div>
-          <div class="product-price">RS. ${item.price}</div>
+          <div class="product-price">₹${item.price}</div>
         </div>
         `;
 
@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       // Update the total price in the cart
-      cartTotal.textContent = `Total: RS. ${total}`;
+      cartTotal.textContent = `Total: ₹${total}`;
       cartTotal.style.display = "block";
     }
   }
