@@ -409,6 +409,7 @@ a {
 
 /* Image Section covering 50% of viewport height */
 .image-section-viewport {
+  margin-top: 70px;
   height: auto; /* 50% of viewport height */
   width: 100%;
   overflow: hidden;
@@ -517,7 +518,7 @@ a {
 /* Footer Subscribe on the Right */
 .footer-subscribe {
   flex: 1; /* Takes up space on the right */
-  text-align: right;
+  text-align: left;
 }
 
 .footer-subscribe h3 {
