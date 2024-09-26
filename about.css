@@ -273,9 +273,8 @@ html {
 
 .footer-subscribe h3 {
   color: #1e1e1e;
-
   font-family: Rubik;
-  font-size: 12px;
+  font-size: 12px !important;
   font-style: normal;
   font-weight: 600;
   line-height: 28px; /* 233.333% */
@@ -287,7 +286,6 @@ html {
   justify-content: space-between;
   gap: 10px; /* Space between input and button */
   color: #232323;
-
   font-family: Rubik;
   font-size: 12px;
   font-style: normal;
