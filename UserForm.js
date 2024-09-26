@@ -133,8 +133,8 @@ document.getElementById("buyNowBtn").addEventListener("click", function () {
       cartItems.reduce((total, item) => total + item.price * item.quantity, 0) *
       100, // Amount in paisa
     currency: "INR",
-    name: "Your Store",
-    description: "Test Transaction",
+    name: "Maaher",
+    description: "Transaction",
     handler: function (response) {
       // On successful payment, send order details to serverless function
       fetch("/api/sendOrderEmail", {
