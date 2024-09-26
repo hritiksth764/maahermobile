@@ -579,30 +579,63 @@ form {
 }
 
 .input[type="email"] {
-  padding: 10px 40px 10px 15px; /* Space for the button inside */
+  padding: 10px 40px 10px 15px;
   font-size: 1rem;
   border: 1px solid #4b2e28;
   border-radius: 5px;
   width: 100%;
 }
 
-.button {
-  width: auto;
-  position: absolute;
-  right: 5px;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: #4b2e28;
-  border: none;
-  padding: 8px;
-  border-radius: 5px;
-  cursor: pointer;
+/* Adjust form styles inside footer subscribe */
+.footer-subscribe form {
+  display: flex; /* Use flexbox for form layout */
+  align-items: center; /* Align items vertically */
+  justify-content: center; /* Center items horizontally */
+  position: relative; /* Ensure children are positioned relative to the form */
 }
 
-.button svg {
-  fill: white;
-  width: 13px;
-  height: 8px;
+/* Style for the input wrapper */
+.input-wrapper {
+  position: relative; /* Relative positioning to contain the button */
+  width: 100%; /* Full width to align input and button */
+}
+
+/* Style for the email input field */
+.input-wrapper input[type="email"] {
+  width: 100%; /* Full width */
+  padding: 12px 50px 12px 15px; /* Space for button inside */
+  border: 1px solid #4b2e28; /* Border color */
+  border-radius: 5px; /* Rounded corners */
+  font-size: 14px; /* Adjust font size */
+}
+
+/* Style for the submit button */
+.input-wrapper button {
+  position: absolute; /* Position inside input wrapper */
+  right: 5px; /* Position 5px from the right edge */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Adjust for perfect vertical centering */
+  background-color: #4b2e28; /* Button background color */
+  border: none; /* No border */
+  padding: 8px 12px; /* Adjust padding */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  color: white; /* White text color */
+  display: flex; /* Use flexbox to center icon */
+  align-items: center; /* Center icon vertically */
+  justify-content: center; /* Center icon horizontally */
+}
+
+/* Hover effect for the submit button */
+.input-wrapper button:hover {
+  background-color: #6b3e36; /* Slightly lighter background color on hover */
+}
+
+/* Optional: Adjust SVG icon inside the button */
+.input-wrapper button svg {
+  fill: white; /* White fill color for the icon */
+  width: 16px; /* Adjust width */
+  height: 16px; /* Adjust height */
 }
 
 .social-icons {
