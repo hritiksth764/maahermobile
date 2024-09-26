@@ -272,6 +272,7 @@ html {
 }
 
 .footer-subscribe h3 {
+  width: auto;
   color: #1e1e1e;
   font-family: Rubik;
   font-size: 12px !important;
@@ -358,7 +359,7 @@ button svg {
   display: flex;
   justify-content: flex-end; /* Right-align social icons */
   gap: 10px; /* Space between social icons */
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 .social-icons a img {
