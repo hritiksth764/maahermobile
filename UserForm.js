@@ -128,7 +128,8 @@ document.getElementById("buyNowBtn").addEventListener("click", function () {
 
   // Razorpay options
   const options = {
-    key: "rzp_live_mg4IkuDxgDAvvz", // Replace with your Razorpay API key
+    // key: "rzp_live_mg4IkuDxgDAvvz", // live key
+    key: "rzp_test_nqtmUnMF9r43qM", //test key
     amount:
       cartItems.reduce((total, item) => total + item.price * item.quantity, 0) *
       100, // Amount in paisa
@@ -151,6 +152,10 @@ document.getElementById("buyNowBtn").addEventListener("click", function () {
         .then((res) => res.json())
         .then(() => {
           alert("Payment successful! Redirecting...");
+
+          cartItems.forEach((item) => {
+            markProductOutOfStock(item.name); // Mark each product out of stock
+          });
           // Clear the cart and user info from local storage
           localStorage.removeItem("cartItems");
           localStorage.removeItem("userInfo");
@@ -176,3 +181,19 @@ document.getElementById("buyNowBtn").addEventListener("click", function () {
   const rzp = new Razorpay(options);
   rzp.open();
 });
+
+async function markProductOutOfStock(productName) {
+  try {
+    const response = await fetch("/api/update-stock", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ productName }),
+    });
+    const result = await response.json();
+    console.log(result.message); // Log the success message
+  } catch (error) {
+    console.error("Error updating stock:", error);
+  }
+}

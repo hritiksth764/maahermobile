@@ -1,0 +1,11 @@
+{
+  "Pamdura": {
+    "inStock": true
+  },
+  "Laal": {
+    "inStock": true
+  },
+  "Pival": {
+    "inStock": false
+  }
+}

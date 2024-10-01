@@ -452,7 +452,6 @@
     </div>
 
     <script>
-      // Cart Slider Functionality
       document.addEventListener("DOMContentLoaded", function () {
         const cartSlider = document.getElementById("cartSlider");
         const cartIcon = document.querySelector(".cart");
@@ -461,15 +460,13 @@
         const cartItemsList = document.getElementById("cartItemsList");
         const cartTotal = document.getElementById("cartTotal");
         const cartCounter = document.getElementById("cart-counter"); // Cart counter element
-
+        const addToBagButton = document.getElementById("addToBag");
         const productName = document.getElementById("productName").textContent;
         const productPrice = parseInt(
           document
             .getElementById("productPrice")
             .textContent.replace(/[^0-9]/g, "")
         );
-
-        const addToBagButton = document.getElementById("addToBag");
 
         // Open cart slider when cart icon is clicked
         cartIcon.addEventListener("click", function () {
@@ -491,7 +488,7 @@
             (item) => item.name === productName
           );
           if (existingItem) {
-            existingItem.quantity += 1; // Increment quantity if the product is already in the cart
+            alert("This product is already in your cart.");
           } else {
             // Add new item to the cart
             cartItems.push({
@@ -499,12 +496,12 @@
               price: productPrice,
               quantity: 1,
             });
-          }
 
-          // Save updated cart to local storage
-          localStorage.setItem("cartItems", JSON.stringify(cartItems));
-          updateCartCounter(); // Update cart counter
-          loadCartItems(); // Refresh the cart UI
+            // Save updated cart to local storage
+            localStorage.setItem("cartItems", JSON.stringify(cartItems));
+            updateCartCounter(); // Update cart counter
+            loadCartItems(); // Refresh the cart UI
+          }
         });
 
         // Load cart items from local storage and display in the cart slider
@@ -522,91 +519,54 @@
             let total = 0;
 
             // Loop through cart items and create the cart structure
-            cartItems.forEach((item, index) => {
+            cartItems.forEach((item) => {
               const li = document.createElement("li");
 
               // Create the HTML structure for each cart item
               li.innerHTML = `
-        <div class="cart-item">
-          <div class="product-name">${item.name}</div>
-          <div class="product-price">₹${item.price}</div>
-          <div class="quantity-controls">
-            <button class="decrease-quantity" data-index="${index}">-</button>
-            <span class="quantity">${item.quantity}</span>
-            <button class="increase-quantity" data-index="${index}">+</button>
-          </div>
-        </div>
-      `;
+                <div class="cart-item">
+                  <div class="product-name">${item.name}</div>
+                  <div class="product-price">₹${item.price}</div>
+                  <div class="quantity">Quantity: 1</div>
+                </div>
+              `;
 
               // Append the item to the cart items list
               cartItemsList.appendChild(li);
 
               // Calculate the total price
-              total += item.price * item.quantity;
+              total += item.price;
             });
 
             // Update the total price in the cart
             cartTotal.textContent = `Total: ₹${total}`;
             cartTotal.style.display = "block";
-
-            // Add event listeners for the increase and decrease buttons
-            document
-              .querySelectorAll(".increase-quantity")
-              .forEach((button) => {
-                button.addEventListener("click", function () {
-                  const index = this.getAttribute("data-index");
-                  increaseQuantity(index);
-                });
-              });
-
-            document
-              .querySelectorAll(".decrease-quantity")
-              .forEach((button) => {
-                button.addEventListener("click", function () {
-                  const index = this.getAttribute("data-index");
-                  decreaseQuantity(index);
-                });
-              });
           }
-        }
-
-        // Function to increase the quantity of an item in the cart
-        function increaseQuantity(index) {
-          const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-          cartItems[index].quantity += 1;
-          localStorage.setItem("cartItems", JSON.stringify(cartItems));
-          updateCartCounter();
-          loadCartItems();
-        }
-
-        // Function to decrease the quantity of an item in the cart
-        function decreaseQuantity(index) {
-          const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-          cartItems[index].quantity -= 1;
-
-          // If quantity is 0, remove the item from the cart
-          if (cartItems[index].quantity === 0) {
-            cartItems.splice(index, 1);
-          }
-
-          localStorage.setItem("cartItems", JSON.stringify(cartItems));
-          updateCartCounter();
-          loadCartItems();
         }
 
         // Update the cart counter
         function updateCartCounter() {
           const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-          const totalItems = cartItems.reduce(
-            (sum, item) => sum + item.quantity,
-            0
-          );
+          const totalItems = cartItems.length;
           cartCounter.textContent = totalItems;
         }
 
         // Load cart items when page loads
         loadCartItems();
         updateCartCounter(); // Update the cart counter when page loads
+        // Always show checkout button
+        const checkoutButton = document.getElementById("checkout-button");
+        checkoutButton.style.display = "block";
+        checkoutButton.addEventListener("click", function () {
+          const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+          if (cartItems.length === 0) {
+            alert(
+              "Please add items to your cart before proceeding to checkout."
+            );
+          } else {
+            window.location.href = "UserForm.html"; // Redirect to the form page
+          }
+        });
       });
       document.addEventListener("DOMContentLoaded", () => {
         const accordionHeaders = document.querySelectorAll(".accordion-header");
@@ -642,119 +602,21 @@
           });
         });
       });
-      function updateCheckoutButton() {
-        const checkoutButton = document.getElementById("checkout-button");
+      document.addEventListener("DOMContentLoaded", async function () {
+        const productName = document.getElementById("productName").textContent;
 
-        // Always display the checkout button
-        checkoutButton.style.display = "block";
-      }
+        // Fetch stock data
+        const response = await fetch("/data/stock.json");
+        const stockData = await response.json();
 
-      // Call the function when the page loads
-      document.addEventListener("DOMContentLoaded", function () {
-        updateCheckoutButton(); // Ensure the checkout button is always visible on load
-      });
+        const addToBagButton = document.getElementById("addToBag");
 
-      // Call the function when the page loads
-      document.addEventListener("DOMContentLoaded", function () {
-        updateCheckoutButton(); // Update the button visibility on load
-      });
-
-      // Example: Function to add items to cart
-      function addToCart(product) {
-        let cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-        cartItems.push(product);
-        localStorage.setItem("cart", JSON.stringify(cartItems));
-
-        updateCheckoutButton(); // Update the button visibility after adding items
-      }
-
-      // Example: Function to remove items from cart
-      function removeFromCart(productId) {
-        let cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-        cartItems = cartItems.filter((item) => item.id !== productId);
-        localStorage.setItem("cart", JSON.stringify(cartItems));
-
-        updateCheckoutButton(); // Update the button visibility after removing items
-      }
-
-      document.addEventListener("DOMContentLoaded", function () {
-        const cartItemsList = document.getElementById("cartItemsList");
-        const cartTotal = document.getElementById("cartTotal");
-        const checkoutButton = document.getElementById("checkout-button");
-        const cartMessage = document.getElementById("cartMessage");
-
-        // Function to load cart items from local storage
-        function loadCartItems() {
-          const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-
-          // Clear previous cart content
-          cartItemsList.innerHTML = "";
-
-          if (cartItems.length === 0) {
-            cartTotal.textContent = "";
-            cartMessage.textContent = "Your cart is empty!";
-          } else {
-            let total = 0;
-            cartMessage.textContent = ""; // Clear the empty cart message
-
-            cartItems.forEach((item) => {
-              const li = document.createElement("li");
-              li.textContent = `${item.name} - ₹${item.price} x ${item.quantity}`;
-              cartItemsList.appendChild(li);
-
-              total += item.price * item.quantity;
-            });
-
-            cartTotal.textContent = `Total: ₹${total}`;
-          }
+        // Check if the product is in stock
+        if (!stockData[productName].inStock) {
+          addToBagButton.disabled = true;
+          addToBagButton.textContent = "Out of Stock";
         }
-
-        // Handle Checkout button click
-        checkoutButton.addEventListener("click", function () {
-          const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-
-          if (cartItems.length === 0) {
-            // If cart is empty, show an alert message
-            alert(
-              "Please add items to your cart before proceeding to checkout."
-            );
-          } else {
-            // Redirect to userform.html if the cart has items
-            window.location.href = "UserForm.html";
-          }
-        });
-
-        // Load cart items when the page loads
-        loadCartItems();
       });
-      const images = document.querySelectorAll(".image-slider img");
-      const pagination = document.querySelector(".pagination");
-
-      let currentIndex = 0;
-
-      // Create pagination buttons (dots)
-      images.forEach((_, index) => {
-        const button = document.createElement("button");
-        if (index === 0) button.classList.add("active");
-        button.addEventListener("click", () => {
-          setCurrentSlide(index);
-        });
-        pagination.appendChild(button);
-      });
-
-      // Function to set the current slide
-      function setCurrentSlide(index) {
-        images[currentIndex].classList.remove("active");
-        pagination.children[currentIndex].classList.remove("active");
-
-        currentIndex = index;
-
-        images[currentIndex].classList.add("active");
-        pagination.children[currentIndex].classList.add("active");
-      }
-
-      // Initialize the first image as active
-      images[currentIndex].classList.add("active");
     </script>
   </body>
 </html>
