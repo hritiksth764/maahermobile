@@ -152,7 +152,6 @@ document.getElementById("buyNowBtn").addEventListener("click", function () {
         .then((res) => res.json())
         .then(() => {
           alert("Payment successful! Redirecting...");
-
           cartItems.forEach((item) => {
             markProductOutOfStock(item.name); // Mark each product out of stock
           });

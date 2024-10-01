@@ -1,0 +1,8 @@
+{
+  "functions": {
+    "api/update-stock.js": {
+      "memory": 128,
+      "maxDuration": 10
+    }
+  }
+}
