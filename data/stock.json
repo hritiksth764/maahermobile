@@ -1,11 +1,40 @@
 {
-  "Pamdura": {
-    "inStock": true
-  },
-  "Laal": {
-    "inStock": true
-  },
-  "Pival": {
-    "inStock": true
-  }
+  "products": [
+    {
+      "name": "Pamdura",
+      "inStock": true
+    },
+    {
+      "name": "Laal",
+      "inStock": true
+    },
+    {
+      "name": "Pival",
+      "inStock": true
+    },
+    {
+      "name": "Rouge",
+      "inStock": true
+    },
+    {
+      "name": "Neel",
+      "inStock": true
+    },
+    {
+      "name": "Hiri",
+      "inStock": true
+    },
+    {
+      "name": "Harit",
+      "inStock": true
+    },
+    {
+      "name": "Gulaab",
+      "inStock": true
+    },
+    {
+      "name": "Gulaal",
+      "inStock": true
+    }
+  ]
 }

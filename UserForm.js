@@ -1,3 +1,4 @@
+// Function to display the cart items
 function displayCart() {
   const cartDetails = document.getElementById("cartDetails");
   const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
@@ -128,7 +129,6 @@ document.getElementById("buyNowBtn").addEventListener("click", function () {
 
   // Razorpay options
   const options = {
-    // key: "rzp_live_mg4IkuDxgDAvvz", // live key
     key: "rzp_test_nqtmUnMF9r43qM", //test key
     amount:
       cartItems.reduce((total, item) => total + item.price * item.quantity, 0) *
@@ -181,6 +181,7 @@ document.getElementById("buyNowBtn").addEventListener("click", function () {
   rzp.open();
 });
 
+// Function to mark products out of stock
 async function markProductOutOfStock(productName) {
   try {
     const response = await fetch("/api/update-stock", {
