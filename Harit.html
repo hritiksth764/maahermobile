@@ -453,22 +453,15 @@
         const productName = document
           .getElementById("productName")
           .textContent.trim();
+
+        // Replace with your actual S3 JSON URL
         const s3Url =
           "https://maaher-product-inventory.s3.eu-north-1.amazonaws.com/stock.json";
 
+        const addToBagButton = document.getElementById("addToBag");
+        addToBagButton.disabled = true; // Disable button initially
+
         try {
-          // Check local storage first
-          const stockStatus = JSON.parse(localStorage.getItem(productName));
-          const addToBagButton = document.getElementById("addToBag");
-
-          if (stockStatus && !stockStatus.inStock) {
-            addToBagButton.disabled = true;
-            addToBagButton.textContent = "Out of Stock";
-            addToBagButton.style.backgroundColor = "#d9534f"; // Optional: change button color to red
-            return; // Early return to skip fetching from S3
-          }
-
-          // If not in local storage, fetch from S3
           const response = await fetch(s3Url);
           const stockData = await response.json();
 
@@ -477,8 +470,9 @@
             (p) => p.name === productName
           );
 
-          if (product && !product.inStock) {
-            addToBagButton.disabled = true;
+          if (product && product.inStock) {
+            addToBagButton.disabled = false; // Enable button if in stock
+          } else {
             addToBagButton.textContent = "Out of Stock";
             addToBagButton.style.backgroundColor = "#d9534f"; // Optional: change button color to red
           }
