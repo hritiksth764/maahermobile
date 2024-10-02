@@ -190,6 +190,7 @@ document.getElementById("buyNowBtn").addEventListener("click", function () {
 // Function to mark products out of stock
 async function markProductsOutOfStock(cartItems) {
   try {
+    console.log("Sending request to update stock...");
     const response = await fetch("/api/update-stock", {
       method: "POST",
       headers: {
@@ -197,6 +198,12 @@ async function markProductsOutOfStock(cartItems) {
       },
       body: JSON.stringify({ cartItems }), // Send the entire cartItems array
     });
+
+    // Check if the response is OK (status code in the range 200-299)
+    if (!response.ok) {
+      throw new Error(`Network response was not ok: ${response.statusText}`);
+    }
+
     const result = await response.json();
     console.log(result.message); // Log the success message
   } catch (error) {
