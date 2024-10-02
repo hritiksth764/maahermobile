@@ -2,15 +2,18 @@ const AWS = require("aws-sdk");
 const s3 = new AWS.S3({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  region: "eu-north-1", // Correct region for your S3 bucket
+  region: "eu-north-1", // Ensure this matches your S3 bucket's region
 });
 
 exports.handler = async function (event) {
+  console.log("Event received:", JSON.stringify(event, null, 2));
+
   try {
     const { cartItems } = JSON.parse(event.body);
 
     // Check if cartItems is defined and is an array
     if (!cartItems || !Array.isArray(cartItems)) {
+      console.error("Invalid cartItems:", cartItems);
       throw new Error("Invalid cartItems");
     }
 
