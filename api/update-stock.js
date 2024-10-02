@@ -5,28 +5,37 @@ const s3 = new AWS.S3({
   region: "eu-north-1", // Ensure this matches your S3 bucket's region
 });
 
-// Default export
 module.exports = async (req, res) => {
   console.log("Event received:", JSON.stringify(req.body, null, 2));
 
-  res.setHeader("Access-Control-Allow-Origin", "https://www.maher.life");
-  res.setHeader("Access-Control-Allow-Origin", "https://maaher.life");
+  // Define allowed origins
+  const allowedOrigins = ["https://www.maher.life", "https://maaher.life"];
+  const origin = req.headers.origin;
+
+  // Set CORS headers for allowed origins
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  } else {
+    res.setHeader("Access-Control-Allow-Origin", "https://www.maher.life"); // Fallback default origin
+  }
+
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
+  // Handle preflight OPTIONS request
   if (req.method === "OPTIONS") {
-    // Handle preflight request
     return res.status(200).end();
   }
 
+  // Only allow POST requests
   if (req.method !== "POST") {
     return res.status(405).json({ message: "Method Not Allowed" });
   }
 
   try {
-    const { cartItems } = req.body; // Access the body directly from req
+    const { cartItems } = req.body;
 
-    // Check if cartItems is defined and is an array
+    // Validate cartItems
     if (!cartItems || !Array.isArray(cartItems)) {
       console.error("Invalid cartItems:", cartItems);
       return res.status(400).json({ message: "Invalid cartItems" });
@@ -36,17 +45,18 @@ module.exports = async (req, res) => {
     const stockData = await s3
       .getObject({
         Bucket: "maaher-product-inventory", // Replace with your bucket name
-        Key: "stock.json", // Ensure this matches your JSON file's key in S3
+        Key: "stock.json", // Replace with your JSON file's key in S3
       })
       .promise();
 
+    // Parse the stock data
     let stock = JSON.parse(stockData.Body.toString());
 
-    // Update the stock for each product
+    // Update the stock for each product in cartItems
     cartItems.forEach((item) => {
       const product = stock.products.find((p) => p.name === item.name);
       if (product) {
-        product.inStock = false; // Set the product as out of stock
+        product.inStock = false; // Mark product as out of stock
       }
     });
 
@@ -60,6 +70,7 @@ module.exports = async (req, res) => {
       })
       .promise();
 
+    // Send a success response
     return res.status(200).json({ message: "Stock updated successfully" });
   } catch (error) {
     console.error("Error updating stock:", error);
