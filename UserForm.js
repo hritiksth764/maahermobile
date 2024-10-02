@@ -137,7 +137,7 @@ document.getElementById("buyNowBtn").addEventListener("click", function () {
     name: "Maaher",
     description: "Transaction",
     handler: function (response) {
-      // On successful payment, send order details to serverless function
+      // On successful payment, send order details to the serverless function
       fetch("/api/sendOrderEmail", {
         method: "POST",
         headers: {
