@@ -5,16 +5,21 @@ const s3 = new AWS.S3({
   region: "eu-north-1", // Ensure this matches your S3 bucket's region
 });
 
-exports.handler = async function (event) {
-  console.log("Event received:", JSON.stringify(event, null, 2));
+// Default export
+module.exports = async (req, res) => {
+  console.log("Event received:", JSON.stringify(req.body, null, 2));
+
+  if (req.method !== "POST") {
+    return res.status(405).json({ message: "Method Not Allowed" });
+  }
 
   try {
-    const { cartItems } = JSON.parse(event.body);
+    const { cartItems } = req.body; // Access the body directly from req
 
     // Check if cartItems is defined and is an array
     if (!cartItems || !Array.isArray(cartItems)) {
       console.error("Invalid cartItems:", cartItems);
-      throw new Error("Invalid cartItems");
+      return res.status(400).json({ message: "Invalid cartItems" });
     }
 
     // Fetch the existing stock.json from S3
@@ -45,17 +50,11 @@ exports.handler = async function (event) {
       })
       .promise();
 
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ message: "Stock updated successfully" }),
-    };
+    return res.status(200).json({ message: "Stock updated successfully" });
   } catch (error) {
     console.error("Error updating stock:", error);
-    return {
-      statusCode: 500,
-      body: JSON.stringify({
-        message: error.message || "Failed to update stock",
-      }),
-    };
+    return res
+      .status(500)
+      .json({ message: error.message || "Failed to update stock" });
   }
 };
