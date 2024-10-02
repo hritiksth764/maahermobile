@@ -9,6 +9,16 @@ const s3 = new AWS.S3({
 module.exports = async (req, res) => {
   console.log("Event received:", JSON.stringify(req.body, null, 2));
 
+  res.setHeader("Access-Control-Allow-Origin", "https://www.maher.life");
+  res.setHeader("Access-Control-Allow-Origin", "https://maaher.life");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  if (req.method === "OPTIONS") {
+    // Handle preflight request
+    return res.status(200).end();
+  }
+
   if (req.method !== "POST") {
     return res.status(405).json({ message: "Method Not Allowed" });
   }
