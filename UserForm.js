@@ -152,9 +152,10 @@ document.getElementById("buyNowBtn").addEventListener("click", function () {
         .then((res) => res.json())
         .then(() => {
           alert("Payment successful! Redirecting...");
-          cartItems.forEach((item) => {
-            markProductOutOfStock(item.name); // Mark each product out of stock
-          });
+
+          // Mark all products in the cart as out of stock
+          markProductsOutOfStock(cartItems);
+
           // Clear the cart and user info from local storage
           localStorage.removeItem("cartItems");
           localStorage.removeItem("userInfo");
@@ -182,14 +183,14 @@ document.getElementById("buyNowBtn").addEventListener("click", function () {
 });
 
 // Function to mark products out of stock
-async function markProductOutOfStock(productName) {
+async function markProductsOutOfStock(cartItems) {
   try {
     const response = await fetch("/api/update-stock", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ productName }),
+      body: JSON.stringify({ cartItems }), // Send the entire cartItems array
     });
     const result = await response.json();
     console.log(result.message); // Log the success message
