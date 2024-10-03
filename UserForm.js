@@ -26,7 +26,7 @@ function displayCart() {
     </ul>
     <div class="cart-summary">
       <p><strong>Subtotal:</strong> ₹${total}</p>
-      <p><strong>Shipping:</strong> ₹50</p>
+      
       <p><strong>Total:</strong> ₹${(total + 50).toFixed(2)}</p>
     </div>
   `;
@@ -129,8 +129,8 @@ document.getElementById("buyNowBtn").addEventListener("click", function () {
     (total, item) => total + item.price * item.quantity,
     0
   );
-  const shippingFee = 50; // Assuming a flat shipping fee of ₹50
-  const totalAmount = subtotal + shippingFee;
+  // const shippingFee = 50; // Assuming a flat shipping fee of ₹50
+  const totalAmount = subtotal;
 
   // Save user info to local storage
   localStorage.setItem("userInfo", JSON.stringify(userInfo));
