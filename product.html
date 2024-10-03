@@ -673,6 +673,9 @@
         const dots = document.querySelectorAll(".dot");
         const images = document.querySelectorAll(".image-slider img");
 
+        // Set the slider to the first image on page load
+        imageSlider.scrollLeft = 0;
+
         // Function to update the active dot based on the scroll position
         function updateDots() {
           const sliderWidth = imageSlider.scrollWidth / images.length;
@@ -692,8 +695,8 @@
           updateDots();
         });
 
-        // Initialize the first dot as active
-        updateDots();
+        // Initialize the first slide and the first dot as active on page load
+        dots[0].classList.add("active-dot"); // Set the first dot as active
       });
     </script>
   </body>
