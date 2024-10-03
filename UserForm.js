@@ -124,15 +124,21 @@ document.getElementById("buyNowBtn").addEventListener("click", function () {
     return;
   }
 
+  // Calculate subtotal
+  const subtotal = cartItems.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
+  const shippingFee = 50; // Assuming a flat shipping fee of ₹50
+  const totalAmount = subtotal + shippingFee;
+
   // Save user info to local storage
   localStorage.setItem("userInfo", JSON.stringify(userInfo));
 
   // Razorpay options
   const options = {
-    key: "rzp_test_nqtmUnMF9r43qM", //test key
-    amount:
-      cartItems.reduce((total, item) => total + item.price * item.quantity, 0) *
-      100, // Amount in paisa
+    key: "rzp_test_nqtmUnMF9r43qM", // test key
+    amount: totalAmount * 100, // Amount in paisa (multiply by 100)
     currency: "INR",
     name: "Maaher",
     description: "Transaction",
