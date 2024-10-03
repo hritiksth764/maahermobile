@@ -128,6 +128,9 @@
       <form id="userForm">
         <div class="form-group">
           <input type="email" id="email" placeholder="Email" required />
+          <span id="emailError" style="color: red; display: none"
+            >Please enter a valid email address</span
+          >
         </div>
         <div class="form-group">
           <input type="tel" id="phone" placeholder="Phone Number" required />
@@ -172,7 +175,16 @@
           <input type="text" id="state" placeholder="State" required />
         </div>
         <div class="form-group">
-          <input type="text" id="pin" placeholder="PIN Code" required />
+          <input
+            type="text"
+            id="pin"
+            placeholder="PIN Code"
+            required
+            maxlength="6"
+          />
+          <span id="pinError" style="color: red; display: none"
+            >Please enter a valid 6-digit PIN code</span
+          >
         </div>
       </form>
 

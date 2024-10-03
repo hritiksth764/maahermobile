@@ -219,3 +219,31 @@ async function markProductsOutOfStock(cartItems) {
     console.error("Error updating stock:", error);
   }
 }
+
+document.getElementById("email").addEventListener("input", function () {
+  const emailField = this;
+  const emailError = document.getElementById("emailError");
+  const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,7}$/;
+
+  if (!emailPattern.test(emailField.value)) {
+    emailError.style.display = "block"; // Show error message
+  } else {
+    emailError.style.display = "none"; // Hide error message
+  }
+});
+
+document.getElementById("pin").addEventListener("input", function () {
+  const pinField = this;
+  const pinError = document.getElementById("pinError");
+  const pinPattern = /^[0-9]{6}$/; // Pattern for exactly 6 digits
+
+  // Remove any non-numeric characters
+  pinField.value = pinField.value.replace(/\D/g, "");
+
+  // Validate length and show/hide error message
+  if (pinField.value.length === 6 && pinPattern.test(pinField.value)) {
+    pinError.style.display = "none"; // Hide error if valid
+  } else {
+    pinError.style.display = "block"; // Show error if invalid
+  }
+});
