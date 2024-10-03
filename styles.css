@@ -332,7 +332,7 @@ html {
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 12px; /* Gap between the product cards */
-  margin-top: 20px;
+  margin-top: 16px;
 }
 
 .product-card {
