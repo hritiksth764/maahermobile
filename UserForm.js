@@ -27,7 +27,7 @@ function displayCart() {
     <div class="cart-summary">
       <p><strong>Subtotal:</strong> ₹${total}</p>
       
-      <p><strong>Total:</strong> ₹${(total + 50).toFixed(2)}</p>
+      <p><strong>Total:</strong> ₹${total.toFixed(2)}</p>
     </div>
   `;
 
