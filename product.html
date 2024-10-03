@@ -461,14 +461,12 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", async function () {
+        // Stock status check
         const productName = document
           .getElementById("productName")
           .textContent.trim();
-
-        // Replace with your actual S3 JSON URL
         const s3Url =
           "https://maaher-product-inventory.s3.eu-north-1.amazonaws.com/stock.json";
-
         const addToBagButton = document.getElementById("addToBag");
         addToBagButton.disabled = true; // Disable button initially
 
@@ -479,44 +477,35 @@
           stockStatus[productName].inStock === false;
 
         if (isOutOfStockLocally) {
-          // If local storage says it's out of stock, immediately reflect this to the user
           addToBagButton.textContent = "Out of Stock";
           addToBagButton.style.backgroundColor = "#A9A9A9";
-
-          // Optional: change button color to red
         }
 
         // Step 2: Fetch from S3 to check global stock status
         try {
           const response = await fetch(s3Url);
           const stockData = await response.json();
-
-          // Check if the product is in stock globally
           const product = stockData.products.find(
             (p) => p.name === productName
           );
 
           if (product && product.inStock) {
-            // Enable the button only if the product is in stock globally, regardless of local storage
             if (!isOutOfStockLocally) {
-              addToBagButton.disabled = false; // Enable button if globally in stock and not locally out of stock
+              addToBagButton.disabled = false;
             }
           } else {
-            // If globally out of stock, mark it out of stock and update local storage as well
             addToBagButton.textContent = "Out of Stock";
-            addToBagButton.style.backgroundColor = "#d9534f"; // Optional: change button color to red
+            addToBagButton.style.backgroundColor = "#d9534f";
             addToBagButton.disabled = true;
 
-            // Update local storage to mark the product as out of stock globally
             stockStatus[productName] = { inStock: false };
             localStorage.setItem("stockStatus", JSON.stringify(stockStatus));
           }
         } catch (error) {
           console.error("Error fetching stock data:", error);
         }
-      });
 
-      document.addEventListener("DOMContentLoaded", function () {
+        // Cart slider functionality
         const cartSlider = document.getElementById("cartSlider");
         const cartIcon = document.querySelector(".cart");
         const closeCart = document.querySelector(".close-cart-btn svg");
@@ -524,55 +513,38 @@
         const cartItemsList = document.getElementById("cartItemsList");
         const cartTotal = document.getElementById("cartTotal");
         const cartCounter = document.getElementById("cart-counter");
-        const addToBagButton = document.getElementById("addToBag");
-        const productName = document.getElementById("productName").textContent;
-        const productPrice = parseInt(
-          document
-            .getElementById("productPrice")
-            .textContent.replace(/[^0-9]/g, "")
-        );
 
-        // Open cart slider when cart icon is clicked
         cartIcon.addEventListener("click", function () {
           cartSlider.classList.add("active");
-          loadCartItems(); // Load the cart items whenever cart is opened
+          loadCartItems();
         });
 
-        // Close cart slider when close button is clicked
         closeCart.addEventListener("click", function () {
           cartSlider.classList.remove("active");
         });
 
-        // Add product to cart and store in local storage
         addToBagButton.addEventListener("click", function () {
           const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-
-          // Check if the item is already in the cart
           const existingItem = cartItems.find(
             (item) => item.name === productName
           );
+
           if (existingItem) {
             alert("This product is already in your cart.");
           } else {
-            // Add new item to the cart
             cartItems.push({
               name: productName,
               price: productPrice,
               quantity: 1,
             });
-
-            // Save updated cart to local storage
             localStorage.setItem("cartItems", JSON.stringify(cartItems));
-            updateCartCounter(); // Update cart counter
-            loadCartItems(); // Refresh the cart UI
+            updateCartCounter();
+            loadCartItems();
           }
         });
 
-        // Load cart items from local storage and display in the cart slider
         function loadCartItems() {
           const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-
-          // Clear previous cart content
           cartItemsList.innerHTML = "";
 
           if (cartItems.length === 0) {
@@ -581,60 +553,46 @@
           } else {
             cartMessage.style.display = "none";
             let total = 0;
-
-            // Loop through cart items and create the cart structure
             cartItems.forEach((item) => {
               const li = document.createElement("li");
-
-              // Create the HTML structure for each cart item
-              li.innerHTML = `
-                <div class="cart-item">
-                  <div class="product-name">${item.name}</div>
-                  <div class="product-price">₹${item.price}</div>
-                  <div class="quantity">Quantity: 1</div>
-                </div>
-              `;
-
-              // Append the item to the cart items list
+              li.innerHTML = `<div class="cart-item"><div class="product-name">${item.name}</div><div class="product-price">₹${item.price}</div><div class="quantity">Quantity: 1</div></div>`;
               cartItemsList.appendChild(li);
-
-              // Calculate the total price
               total += item.price;
             });
-
-            // Update the total price in the cart
             cartTotal.textContent = `Total: ₹${total}`;
             cartTotal.style.display = "block";
           }
         }
 
-        // Update the cart counter
         function updateCartCounter() {
           const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-          const totalItems = cartItems.length;
-          cartCounter.textContent = totalItems;
+          cartCounter.textContent = cartItems.length;
         }
 
-        // Load cart items when page loads
         loadCartItems();
-        updateCartCounter(); // Update the cart counter when page loads
+        updateCartCounter();
 
-        // Always show checkout button
-        const checkoutButton = document.getElementById("checkout-button");
-        checkoutButton.style.display = "block";
-        checkoutButton.addEventListener("click", function () {
-          const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-          if (cartItems.length === 0) {
-            alert(
-              "Please add items to your cart before proceeding to checkout."
-            );
-          } else {
-            window.location.href = "UserForm.html"; // Redirect to the form page
+        // Slider functionality
+        const imageSlider = document.querySelector(".image-slider");
+        const dots = document.querySelectorAll(".dot");
+        const images = document.querySelectorAll(".image-slider img");
+
+        // Set the slider to the first image on page load
+        imageSlider.scrollLeft = 0;
+
+        function updateDots() {
+          const sliderWidth = imageSlider.scrollWidth / images.length;
+          const currentIndex = Math.round(imageSlider.scrollLeft / sliderWidth);
+          dots.forEach((dot) => dot.classList.remove("active-dot"));
+          if (dots[currentIndex]) {
+            dots[currentIndex].classList.add("active-dot");
           }
-        });
-      });
+        }
 
-      document.addEventListener("DOMContentLoaded", () => {
+        imageSlider.addEventListener("scroll", updateDots);
+        dots[0].classList.add("active-dot");
+
+        // Accordion functionality
         const accordionHeaders = document.querySelectorAll(".accordion-header");
 
         accordionHeaders.forEach((header) => {
@@ -642,14 +600,11 @@
             const contentId =
               header.getAttribute("data-accordion") + "-content";
             const content = document.getElementById(contentId);
-
-            // Toggle content
             if (content.classList.contains("accordion-open")) {
               content.style.maxHeight = null;
               content.classList.remove("accordion-open");
               header.querySelector(".accordion-icon").textContent = "+";
             } else {
-              // Close all other open accordions
               document
                 .querySelectorAll(".accordion-content")
                 .forEach((item) => {
@@ -659,44 +614,12 @@
               document.querySelectorAll(".accordion-icon").forEach((icon) => {
                 icon.textContent = "+";
               });
-
-              // Open the clicked accordion
               content.style.maxHeight = content.scrollHeight + "px";
               content.classList.add("accordion-open");
               header.querySelector(".accordion-icon").textContent = "-";
             }
           });
         });
-      });
-      document.addEventListener("DOMContentLoaded", () => {
-        const imageSlider = document.querySelector(".image-slider");
-        const dots = document.querySelectorAll(".dot");
-        const images = document.querySelectorAll(".image-slider img");
-
-        // Set the slider to the first image on page load
-        imageSlider.scrollLeft = 0;
-
-        // Function to update the active dot based on the scroll position
-        function updateDots() {
-          const sliderWidth = imageSlider.scrollWidth / images.length;
-          const currentIndex = Math.round(imageSlider.scrollLeft / sliderWidth);
-
-          // Reset all dots
-          dots.forEach((dot) => dot.classList.remove("active-dot"));
-
-          // Highlight the active dot
-          if (dots[currentIndex]) {
-            dots[currentIndex].classList.add("active-dot");
-          }
-        }
-
-        // Update dots on scroll
-        imageSlider.addEventListener("scroll", () => {
-          updateDots();
-        });
-
-        // Initialize the first slide and the first dot as active on page load
-        dots[0].classList.add("active-dot"); // Set the first dot as active
       });
     </script>
   </body>
