@@ -128,7 +128,8 @@
     </header>
 
     <!-- Horizontal Image Slider Section -->
-    <section class="image-slider">
+    <section class="image-slider-container">
+      <div class="image-slider"></div>
       <img
         src="pivalImages/Copy-of-MAAHERLIFE-RAW9719.jpg"
         alt="Product Image 1"
@@ -145,6 +146,13 @@
         src="pivalImages/Copy-of-MAAHERLIFE-RAW9740.jpg"
         alt="Product Image 4"
       />
+    </div>
+      <div class="pagination">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
     </section>
 
     <!-- Product Details Section -->
@@ -653,6 +661,33 @@
             }
           });
         });
+      });
+      document.addEventListener("DOMContentLoaded", () => {
+        const imageSlider = document.querySelector(".image-slider");
+        const dots = document.querySelectorAll(".dot");
+        const images = document.querySelectorAll(".image-slider img");
+
+        // Function to update the active dot based on the scroll position
+        function updateDots() {
+          const sliderWidth = imageSlider.scrollWidth / images.length;
+          const currentIndex = Math.round(imageSlider.scrollLeft / sliderWidth);
+
+          // Reset all dots
+          dots.forEach((dot) => dot.classList.remove("active-dot"));
+
+          // Highlight the active dot
+          if (dots[currentIndex]) {
+            dots[currentIndex].classList.add("active-dot");
+          }
+        }
+
+        // Update dots on scroll
+        imageSlider.addEventListener("scroll", () => {
+          updateDots();
+        });
+
+        // Initialize the first dot as active
+        updateDots();
       });
     </script>
   </body>
