@@ -40,10 +40,34 @@ body {
   font-weight: 500, 700;
   font-style: normal;
 }
+
+.header {
+  display: flex;
+  justify-content: center; /* Centers the logo horizontally */
+  align-items: center; /* Centers the content vertically */
+  padding: 20px; /* Add some padding if needed */
+  /* Optional background color */
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo a {
+  display: inline-block;
+}
+
+.logo svg {
+  width: 32px;
+  height: 22.41px;
+}
+
 .form-container {
   overflow-x: hidden;
   width: auto;
-  margin: 24px 16px;
+  margin: 10px 16px;
   background-color: white;
 }
 
