@@ -137,7 +137,7 @@ document.getElementById("buyNowBtn").addEventListener("click", function () {
 
   // Razorpay options
   const options = {
-    key: "rzp_live_mg4IkuDxgDAvvz", // test key
+    key: "rzp_live_mg4IkuDxgDAvvz", // Live key
     amount: totalAmount * 100, // Amount in paisa (multiply by 100)
     currency: "INR",
     name: "Maaher",

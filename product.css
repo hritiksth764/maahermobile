@@ -135,20 +135,14 @@ html {
   flex: 1 0 0;
   border-radius: 4px;
   border: 1px solid #351d0d;
-
   background: #351d0d;
   color: #f4f1df;
-
   font-family: Lora;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 20px; /* 142.857% */
 }
-
-/* button:hover {
-  background-color: #45a049;
-} */
 
 /* Cart Slider Styles */
 .cart-slider {
@@ -529,7 +523,7 @@ html {
 .checkout-btn {
   width: 100%;
   padding: 15px;
-  background-color: #333; /* Change this to your desired color */
+  background: #351d0d; /* Change this to your desired color */
   color: white;
   border: none;
   cursor: pointer;
