@@ -168,7 +168,7 @@ html {
 .info-section {
   text-align: center;
   padding: 40px 16px;
-  background-color: #fff;
+  background-color: #fffef9;
 }
 
 .info-heading {
@@ -234,7 +234,7 @@ html {
 
 /* New Section Styling */
 .new-section {
-  margin-top: 100px; /* 100px gap before the section */
+  margin-top: 68px; /* 100px gap before the section */
   padding: 0 16px; /* Padding for the section */
   text-align: center; /* Center-align the text */
 }
@@ -346,7 +346,7 @@ html {
 .product-image {
   width: 100%;
   height: 200px; /* Fixed height for image containers */
-  margin-bottom: 15px;
+  margin-bottom: 8px !important;
   overflow: hidden;
   border-radius: 0px;
 }
