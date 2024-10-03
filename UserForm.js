@@ -156,6 +156,14 @@ document.getElementById("buyNowBtn").addEventListener("click", function () {
           // Mark all products in the cart as out of stock
           markProductsOutOfStock(cartItems);
 
+          // Update stock status in local storage
+          cartItems.forEach((item) => {
+            let stockStatus =
+              JSON.parse(localStorage.getItem("stockStatus")) || {};
+            stockStatus[item.name] = { inStock: false }; // Mark the item as out of stock
+            localStorage.setItem("stockStatus", JSON.stringify(stockStatus));
+          });
+
           // Clear the cart and user info from local storage
           localStorage.removeItem("cartItems");
           localStorage.removeItem("userInfo");

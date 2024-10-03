@@ -460,20 +460,42 @@
         const addToBagButton = document.getElementById("addToBag");
         addToBagButton.disabled = true; // Disable button initially
 
+        // Step 1: Check local storage for product stock status
+        let stockStatus = JSON.parse(localStorage.getItem("stockStatus")) || {};
+        let isOutOfStockLocally =
+          stockStatus[productName] &&
+          stockStatus[productName].inStock === false;
+
+        if (isOutOfStockLocally) {
+          // If local storage says it's out of stock, immediately reflect this to the user
+          addToBagButton.textContent = "Out of Stock";
+          addToBagButton.style.backgroundColor = "#d9534f"; // Optional: change button color to red
+        }
+
+        // Step 2: Fetch from S3 to check global stock status
         try {
           const response = await fetch(s3Url);
           const stockData = await response.json();
 
-          // Check if the product is in stock
+          // Check if the product is in stock globally
           const product = stockData.products.find(
             (p) => p.name === productName
           );
 
           if (product && product.inStock) {
-            addToBagButton.disabled = false; // Enable button if in stock
+            // Enable the button only if the product is in stock globally, regardless of local storage
+            if (!isOutOfStockLocally) {
+              addToBagButton.disabled = false; // Enable button if globally in stock and not locally out of stock
+            }
           } else {
+            // If globally out of stock, mark it out of stock and update local storage as well
             addToBagButton.textContent = "Out of Stock";
             addToBagButton.style.backgroundColor = "#d9534f"; // Optional: change button color to red
+            addToBagButton.disabled = true;
+
+            // Update local storage to mark the product as out of stock globally
+            stockStatus[productName] = { inStock: false };
+            localStorage.setItem("stockStatus", JSON.stringify(stockStatus));
           }
         } catch (error) {
           console.error("Error fetching stock data:", error);
