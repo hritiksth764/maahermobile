@@ -258,6 +258,58 @@
         />
       </svg>
     </div>
+    <section class="you-might-like">
+      <h2 class="section-heading">You might also like</h2>
+      <div class="slider-container">
+        <div class="slider">
+          <div class="product-card" onclick="redirectToProduct('product.html')">
+            <img src="centered/Pamdura.jpg" alt="Laal Product" />
+            <h3>Pamdura</h3>
+            <p>₹40,000</p>
+          </div>
+          <div class="product-card" onclick="redirectToProduct('Laal.html')">
+            <img src="centered/laal.jpg" alt="Laal Product" />
+            <h3>Laal</h3>
+            <p>₹40,000</p>
+          </div>
+          <div class="product-card" onclick="redirectToProduct('Pival.html')">
+            <img src="centered/pival.jpg" alt="Another Product" />
+            <h3>Pival</h3>
+            <p>₹35,000</p>
+          </div>
+          <!-- <div class="product-card" onclick="redirectToProduct('Rouge.html')">
+            <img src="centered/Rouge.jpg" alt="Another Product" />
+            <h3>Rouge</h3>
+            <p>₹40,000</p>
+          </div> -->
+          <div class="product-card" onclick="redirectToProduct('Hiri.html')">
+            <img src="centered/Hiri.jpg" alt="Another Product" />
+            <h3>Hiri</h3>
+            <p>40,000</p>
+          </div>
+          <div class="product-card" onclick="redirectToProduct('Neel.html')">
+            <img src="centered/Neel.jpg" alt="Another Product" />
+            <h3>Neel</h3>
+            <p>₹35,000</p>
+          </div>
+          <div class="product-card" onclick="redirectToProduct('Harit.html')">
+            <img src="centered/Harit.jpg" alt="Another Product" />
+            <h3>Harit</h3>
+            <p>₹30,000</p>
+          </div>
+          <div class="product-card" onclick="redirectToProduct('Gulaab.html')">
+            <img src="centered/unnamed.jpg" alt="Another Product" />
+            <h3>Gulaab</h3>
+            <p>₹35,000</p>
+          </div>
+          <div class="product-card" onclick="redirectToProduct('Gulaal.html')">
+            <img src="centered/gulal.jpg" alt="Another Product" />
+            <h3>Gulaal</h3>
+            <p>₹30,000</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <section class="image-section-viewport">
       <img
@@ -689,6 +741,62 @@
         // Initialize the first dot as active
         updateDots();
       });
+      let currentSlide = 0;
+      let startX = 0;
+      let endX = 0;
+      let isSwiping = false;
+
+      const slider = document.querySelector(".slider");
+      const productCards = document.querySelectorAll(".product-card");
+      const cardWidth = productCards[0].offsetWidth + 20; // width + margin gap
+
+      // Swipe function to move the slider based on direction
+      function moveSlider(direction) {
+        currentSlide += direction;
+
+        // Boundary conditions to prevent over-scrolling
+        if (currentSlide < 0) {
+          currentSlide = 0;
+        } else if (currentSlide > productCards.length - 1) {
+          currentSlide = productCards.length - 1;
+        }
+
+        // Apply the transform to slide the cards
+        slider.style.transform = `translateX(-${currentSlide * cardWidth}px)`;
+      }
+
+      // Function to detect the swipe start
+      function onTouchStart(event) {
+        isSwiping = true;
+        startX = event.touches[0].clientX;
+      }
+
+      // Function to detect the swipe end and calculate direction
+      function onTouchEnd(event) {
+        if (!isSwiping) return;
+        endX = event.changedTouches[0].clientX;
+
+        // Calculate the swipe direction
+        const diffX = endX - startX;
+
+        if (diffX < -50) {
+          // Swiped left
+          moveSlider(1);
+        } else if (diffX > 50) {
+          // Swiped right
+          moveSlider(-1);
+        }
+
+        isSwiping = false;
+      }
+
+      // Event listeners for swipe (Mobile only)
+      slider.addEventListener("touchstart", onTouchStart);
+      slider.addEventListener("touchend", onTouchEnd);
+
+      function redirectToProduct(url) {
+        window.location.href = url;
+      }
     </script>
   </body>
 </html>

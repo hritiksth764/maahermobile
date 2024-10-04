@@ -263,6 +263,69 @@
       </svg>
     </div>
 
+    <section class="you-might-like">
+      <h2 class="section-heading">You might also like</h2>
+      <div class="slider-container">
+        <div class="slider">
+          <div class="product-card" onclick="redirectToProduct('laal.html')">
+            <img src="centered/laal.jpg" alt="Laal Product" />
+            <h3>Laal</h3>
+            <p>₹40,000</p>
+          </div>
+          <div class="product-card" onclick="redirectToProduct('Pival.html')">
+            <img src="centered/pival.jpg" alt="Another Product" />
+            <h3>Pival</h3>
+            <p>₹35,000</p>
+          </div>
+          <div class="product-card" onclick="redirectToProduct('Rouge.html')">
+            <img src="centered/Rouge.jpg" alt="Another Product" />
+            <h3>Rouge</h3>
+            <p>₹40,000</p>
+          </div>
+          <div class="product-card" onclick="redirectToProduct('Hiri.html')">
+            <img src="centered/Hiri.jpg" alt="Another Product" />
+            <h3>Hiri</h3>
+            <p>40,000</p>
+          </div>
+          <div class="product-card" onclick="redirectToProduct('Neel.html')">
+            <img src="centered/Neel.jpg" alt="Another Product" />
+            <h3>Neel</h3>
+            <p>₹35,000</p>
+          </div>
+          <div class="product-card" onclick="redirectToProduct('Harit.html')">
+            <img src="centered/Harit.jpg" alt="Another Product" />
+            <h3>Harit</h3>
+            <p>₹30,000</p>
+          </div>
+          <div class="product-card" onclick="redirectToProduct('Gulaab.html')">
+            <img src="centered/unnamed.jpg" alt="Another Product" />
+            <h3>Gulaab</h3>
+            <p>₹35,000</p>
+          </div>
+          <div class="product-card" onclick="redirectToProduct('Gulaal.html')">
+            <img src="centered/gulal.jpg" alt="Another Product" />
+            <h3>Gulaal</h3>
+            <p>₹30,000</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- <div class="svg-section">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="32"
+        height="32"
+        viewBox="0 0 32 32"
+        fill="none"
+      >
+        <path
+          d="M31.9994 16.0495L30.3497 18.5449C30.0579 18.9884 29.7714 19.4002 29.4747 19.7732C28.7466 20.6995 27.9474 21.3936 26.7836 21.7929C27.1417 22.9084 27.085 24.0722 26.9357 25.4497L26.7889 26.8004L25.566 26.9352C24.1664 27.0874 22.9846 27.1412 21.8524 26.764C21.3648 27.8377 20.6145 28.6613 19.8058 29.3256C19.3379 29.7153 18.8473 30.0489 18.3817 30.3503L15.8397 32L13.3443 30.3503C12.9426 30.0853 12.5696 29.8281 12.2264 29.5661C11.2458 28.8087 10.5105 27.9952 10.0963 26.7842C8.98077 27.1423 7.81692 27.0856 6.43939 26.9364L5.18661 26.7992L5.06425 25.6765C4.91206 24.2769 4.85834 23.0958 5.23615 21.963C4.11348 21.4533 3.26536 20.6541 2.58614 19.806C2.23341 19.3697 1.92663 18.9239 1.64969 18.4924L0 15.9505L1.64969 13.4551C1.94393 13.0116 2.22803 12.5998 2.52228 12.2268C3.25282 11.3005 4.04961 10.6064 5.21645 10.2071C4.85834 9.09161 4.91504 7.92778 5.06425 6.55028L5.21108 5.19964L6.43402 5.06476C7.83363 4.91256 9.01778 4.85885 10.1476 5.23605C10.6328 4.16234 11.3855 3.34109 12.1942 2.67442C12.6621 2.28707 13.1527 1.95106 13.6183 1.64966L16.1626 0L18.6557 1.64966C19.055 1.91465 19.4304 2.17189 19.7736 2.43867C20.7566 3.19129 21.4895 4.00478 21.9037 5.21576C23.0192 4.85766 24.1831 4.91435 25.563 5.06356L26.8134 5.20084L26.9357 6.32348C27.0879 7.72306 27.1417 8.9042 26.7639 10.037C27.8865 10.5443 28.7346 11.3435 29.4139 12.194C29.7642 12.6303 30.0734 13.0791 30.3503 13.5076L32 16.0495H31.9994Z"
+          fill="#F4F1DF"
+        />
+      </svg>
+    </div> -->
+
     <section class="image-section-viewport">
       <img
         src="maaherfooter.png"
@@ -698,6 +761,62 @@
         // Initialize the first slide and the first dot as active on page load
         dots[0].classList.add("active-dot"); // Set the first dot as active
       });
+      let currentSlide = 0;
+      let startX = 0;
+      let endX = 0;
+      let isSwiping = false;
+
+      const slider = document.querySelector(".slider");
+      const productCards = document.querySelectorAll(".product-card");
+      const cardWidth = productCards[0].offsetWidth + 20; // width + margin gap
+
+      // Swipe function to move the slider based on direction
+      function moveSlider(direction) {
+        currentSlide += direction;
+
+        // Boundary conditions to prevent over-scrolling
+        if (currentSlide < 0) {
+          currentSlide = 0;
+        } else if (currentSlide > productCards.length - 1) {
+          currentSlide = productCards.length - 1;
+        }
+
+        // Apply the transform to slide the cards
+        slider.style.transform = `translateX(-${currentSlide * cardWidth}px)`;
+      }
+
+      // Function to detect the swipe start
+      function onTouchStart(event) {
+        isSwiping = true;
+        startX = event.touches[0].clientX;
+      }
+
+      // Function to detect the swipe end and calculate direction
+      function onTouchEnd(event) {
+        if (!isSwiping) return;
+        endX = event.changedTouches[0].clientX;
+
+        // Calculate the swipe direction
+        const diffX = endX - startX;
+
+        if (diffX < -50) {
+          // Swiped left
+          moveSlider(1);
+        } else if (diffX > 50) {
+          // Swiped right
+          moveSlider(-1);
+        }
+
+        isSwiping = false;
+      }
+
+      // Event listeners for swipe (Mobile only)
+      slider.addEventListener("touchstart", onTouchStart);
+      slider.addEventListener("touchend", onTouchEnd);
+
+      function redirectToProduct(url) {
+        window.location.href = url;
+      }
     </script>
   </body>
 </html>
