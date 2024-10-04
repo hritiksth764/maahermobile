@@ -163,7 +163,7 @@
     <section class="product-details">
       <h1 id="productName">Pamdura</h1>
       <p id="productPrice">₹40,000</p>
-      <p>Tax included</p>
+      <p>Tax and shipping included</p>
 
       <button id="addToBag">Add to Bag</button>
       <!-- <button id="buyNow">Buy Now</button> -->
@@ -628,6 +628,9 @@
             localStorage.setItem("cartItems", JSON.stringify(cartItems));
             updateCartCounter(); // Update cart counter
             loadCartItems(); // Refresh the cart UI
+
+            // Show alert when the product is added to the cart
+            alert("Product added to bag!");
           }
         });
 
@@ -768,17 +771,20 @@
 
       const slider = document.querySelector(".slider");
       const productCards = document.querySelectorAll(".product-card");
+      const totalSlides = productCards.length;
       const cardWidth = productCards[0].offsetWidth + 20; // width + margin gap
+      const maxTranslateX = (totalSlides - 1) * cardWidth; // Maximum scroll value
 
       // Swipe function to move the slider based on direction
       function moveSlider(direction) {
+        const totalSlides = productCards.length - 1;
         currentSlide += direction;
 
         // Boundary conditions to prevent over-scrolling
         if (currentSlide < 0) {
           currentSlide = 0;
-        } else if (currentSlide > productCards.length - 1) {
-          currentSlide = productCards.length - 1;
+        } else if (currentSlide > totalSlides) {
+          currentSlide = totalSlides;
         }
 
         // Apply the transform to slide the cards
@@ -800,10 +806,10 @@
         const diffX = endX - startX;
 
         if (diffX < -50) {
-          // Swiped left
+          // Swiped left, move right
           moveSlider(1);
         } else if (diffX > 50) {
-          // Swiped right
+          // Swiped right, move left
           moveSlider(-1);
         }
 

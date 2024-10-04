@@ -164,7 +164,7 @@
     <section class="product-details">
       <h1 id="productName">Gulaal</h1>
       <p id="productPrice">₹35,000</p>
-      <p>Tax included</p>
+      <p>Tax and shipping included</p>
 
       <button id="addToBag">Add to Bag</button>
       <!-- <button id="buyNow">Buy Now</button> -->
@@ -616,6 +616,9 @@
             localStorage.setItem("cartItems", JSON.stringify(cartItems));
             updateCartCounter(); // Update cart counter
             loadCartItems(); // Refresh the cart UI
+
+            // Show alert when the product is added to the cart
+            alert("Product added to bag!");
           }
         });
 
