@@ -534,7 +534,7 @@
         if (isOutOfStockLocally) {
           // If local storage says it's out of stock, immediately reflect this to the user
           addToBagButton.textContent = "Out of Stock";
-          addToBagButton.style.backgroundColor = "#d9534f"; // Optional: change button color to red
+          addToBagButton.style.backgroundColor = "#A9A9A9"; // Optional: change button color to red
         }
 
         // Step 2: Fetch from S3 to check global stock status
@@ -555,7 +555,7 @@
           } else {
             // If globally out of stock, mark it out of stock and update local storage as well
             addToBagButton.textContent = "Out of Stock";
-            addToBagButton.style.backgroundColor = "#d9534f"; // Optional: change button color to red
+            addToBagButton.style.backgroundColor = "#A9A9A9"; // Optional: change button color to red
             addToBagButton.disabled = true;
 
             // Update local storage to mark the product as out of stock globally
