@@ -5,17 +5,19 @@ export default async (req, res) => {
 
   // Create a transporter using Nodemailer
   const transporter = nodemailer.createTransport({
-    service: "gmail", // or your email service
+    service: "smtp.secureserver.net",
+    port: 465,
+    secure: true, // or your email service
     auth: {
-      user: "hritiksth764@gmail.com", // Replace with your email
-      pass: "ssij lcuu fwjn vqir", // Replace with your password or app-specific password
+      user: "hello@maaher.co.in", // Replace with your email
+      pass: "Anahita861!", // Replace with your password or app-specific password
     },
   });
 
   // Generate email content
   const mailOptions = {
-    from: "hritiksth764@gmail.com", // Sender address
-    to: "hritik.s@coreexperience.com", // Recipient email (shop owner)
+    from: "hello@maaher.co.in", // Sender address
+    to: "hello@maaher.co.in", // Recipient email (shop owner)
     subject: "New Order Received",
     text: `
       Payment ID: ${payment_id}
