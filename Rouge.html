@@ -158,7 +158,15 @@
     <!-- Product Details Section -->
     <section class="product-details">
       <h1 id="productName">Rouge</h1>
-      <p id="productPrice">₹40,000</p>
+      <p id="productPrice" style="text-decoration: line-through; color: #888">
+        ₹40,000
+      </p>
+      <p
+        id="discountedPrice"
+        style="font-size: 1.2em; font-weight: bold; color: #000"
+      >
+        ₹34,000
+      </p>
       <p>Tax and shipping included</p>
 
       <button id="addToBag">Add to Bag</button>
@@ -574,7 +582,7 @@
         const productName = document.getElementById("productName").textContent;
         const productPrice = parseInt(
           document
-            .getElementById("productPrice")
+            .getElementById("discountedPrice")
             .textContent.replace(/[^0-9]/g, "")
         );
 

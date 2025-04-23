@@ -45,7 +45,9 @@ document.addEventListener("DOMContentLoaded", function () {
   addToBagButton?.addEventListener("click", function () {
     const productName = document.getElementById("productName").textContent;
     const productPrice = parseInt(
-      document.getElementById("productPrice").textContent.replace(/[^0-9]/g, "")
+      document
+        .getElementById("discountedPrice")
+        .textContent.replace(/[^0-9]/g, "")
     );
     addToCart(productName, productPrice);
   });
